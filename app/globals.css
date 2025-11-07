@@ -1,0 +1,673 @@
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #fafbfc;
+  --fg: #0a0e27;
+  --fg-muted: #4a5568;
+  --line: #e2e8f0;
+  --line-blueprint: #3b82f6;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-light: #dbeafe;
+  --card: #ffffff;
+  --card-border: #e5e7eb;
+  --shadow: rgba(0, 0, 0, 0.04);
+  --shadow-hover: rgba(0, 0, 0, 0.08);
+  --grid-color: rgba(59, 130, 246, 0.1);
+  --draft-color: rgba(59, 130, 246, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(0deg, transparent, transparent 19px, var(--grid-color) 19px, var(--grid-color) 20px),
+    repeating-linear-gradient(90deg, transparent, transparent 19px, var(--grid-color) 19px, var(--grid-color) 20px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar - Blueprint style */
+.navbar {
+  border-bottom: 2px solid var(--line-blueprint);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px var(--shadow);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+}
+
+.navbar-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--line-blueprint) 0, var(--line-blueprint) 4px, transparent 4px, transparent 8px);
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  color: var(--fg);
+  text-transform: uppercase;
+  font-family: 'Courier New', monospace;
+  position: relative;
+  padding: 8px 0;
+}
+
+.brand::before {
+  content: '┌─';
+  color: var(--line-blueprint);
+  margin-right: 4px;
+}
+
+.brand::after {
+  content: '─┐';
+  color: var(--line-blueprint);
+  margin-left: 4px;
+}
+
+.navlinks {
+  display: flex;
+  gap: 32px;
+}
+
+.navlinks a {
+  color: var(--fg-muted);
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding: 8px 0;
+  font-family: 'Courier New', monospace;
+}
+
+.navlinks a::before {
+  content: '│';
+  color: var(--line-blueprint);
+  margin-right: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.navlinks a:hover::before {
+  opacity: 1;
+}
+
+.navlinks a:hover {
+  color: var(--accent);
+}
+
+/* Footer - Blueprint style */
+.footer {
+  border-top: 2px solid var(--line-blueprint);
+  margin-top: 120px;
+  padding: 48px 0;
+  color: var(--fg-muted);
+  font-size: 13px;
+  text-align: center;
+  background: var(--bg-secondary);
+  position: relative;
+  font-family: 'Courier New', monospace;
+}
+
+.footer::before {
+  content: '└' + '─'.repeat(50) + '┘';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--line-blueprint);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* Hero Section - Blueprint style */
+.hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 48px;
+  margin: 60px 0 80px;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.hero-card {
+  background: var(--card);
+  border: 1px solid var(--line-blueprint);
+  border-radius: 0;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px dashed var(--draft-color);
+  pointer-events: none;
+}
+
+.hero-card::after {
+  content: '┌─────────────────────────────────────┐';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  color: var(--line-blueprint);
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.hero-card:hover {
+  box-shadow: 0 4px 16px var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.hero h1 {
+  margin: 0 0 16px;
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  font-weight: 700;
+  color: var(--fg);
+  font-family: 'Inter', sans-serif;
+  position: relative;
+}
+
+.hero h1::before {
+  content: '> ';
+  color: var(--line-blueprint);
+  font-family: 'Courier New', monospace;
+  font-weight: normal;
+  margin-right: 8px;
+}
+
+.subtitle {
+  color: var(--fg-muted);
+  font-size: 18px;
+  margin: 0 0 32px;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 0;
+  border: 1px solid var(--line-blueprint);
+  background: transparent;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  font-family: 'Courier New', monospace;
+  color: var(--fg);
+}
+
+.btn::before {
+  content: '[';
+  margin-right: 4px;
+  color: var(--line-blueprint);
+}
+
+.btn::after {
+  content: ']';
+  margin-left: 4px;
+  color: var(--line-blueprint);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.btn.primary::before,
+.btn.primary::after {
+  color: white;
+}
+
+.btn:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn.primary:hover {
+  background: var(--accent-hover);
+  color: white;
+}
+
+.section-title {
+  margin: 60px 0 24px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--fg);
+  position: relative;
+  padding-left: 24px;
+  border-left: 3px solid var(--line-blueprint);
+}
+
+.section-title::before {
+  content: '//';
+  position: absolute;
+  left: 0;
+  color: var(--line-blueprint);
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  opacity: 0.5;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards - Blueprint style */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line-blueprint);
+  border-radius: 0;
+  padding: 32px;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-top: 1px solid var(--draft-color);
+  border-right: 1px solid var(--draft-color);
+  opacity: 0.5;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 1px solid var(--draft-color);
+  border-left: 1px solid var(--draft-color);
+  opacity: 0.5;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow-hover);
+  border-color: var(--accent);
+}
+
+.card h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--fg);
+  line-height: 1.3;
+}
+
+.card p {
+  margin: 12px 0;
+  color: var(--fg-muted);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* Badges - Blueprint style */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-light);
+  border: 1px solid var(--line-blueprint);
+  padding: 4px 10px;
+  border-radius: 0;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Courier New', monospace;
+}
+
+.badge:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* KPIs - Blueprint style */
+.kpis {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.kpi {
+  font-size: 12px;
+  color: var(--fg-muted);
+  padding: 6px 12px;
+  background: var(--bg-secondary);
+  border-radius: 0;
+  border: 1px dashed var(--line);
+  font-family: 'Courier New', monospace;
+}
+
+.kpi strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Prose - Blueprint style */
+.prose {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.prose p {
+  line-height: 1.8;
+  color: var(--fg-muted);
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.prose h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--fg);
+  line-height: 1.2;
+  border-left: 3px solid var(--line-blueprint);
+  padding-left: 16px;
+}
+
+.prose h2 {
+  margin-top: 48px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fg);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  position: relative;
+}
+
+.prose h2::before {
+  content: '└─';
+  color: var(--line-blueprint);
+  font-family: 'Courier New', monospace;
+  margin-right: 8px;
+  opacity: 0.5;
+}
+
+.prose ul {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+}
+
+.prose ul li {
+  padding: 12px 0 12px 32px;
+  position: relative;
+  color: var(--fg-muted);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.prose ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--line-blueprint);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.prose ul li:hover {
+  color: var(--fg);
+  padding-left: 40px;
+  transition: all 0.2s ease;
+}
+
+/* Form - Blueprint style */
+form {
+  margin-top: 32px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--fg);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Courier New', monospace;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 16px;
+  border: 1px solid var(--line-blueprint);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--accent-light);
+  box-shadow: 0 0 0 3px var(--draft-color);
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: var(--fg-muted);
+  opacity: 0.6;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+  }
+  
+  .prose h1 {
+    font-size: 32px;
+  }
+  
+  .card {
+    padding: 24px;
+  }
+  
+  .navbar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .navlinks {
+    gap: 16px;
+  }
+}
+
+/* Draft annotations */
+.draft-note {
+  position: relative;
+  padding-left: 24px;
+  font-size: 12px;
+  color: var(--fg-muted);
+  font-style: italic;
+  font-family: 'Courier New', monospace;
+}
+
+.draft-note::before {
+  content: 'NOTE:';
+  position: absolute;
+  left: 0;
+  color: var(--line-blueprint);
+  font-weight: bold;
+}
+
+/* Blueprint corner decorations */
+.blueprint-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--draft-color);
+}
+
+.blueprint-corner.top-left {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.blueprint-corner.top-right {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+.blueprint-corner.bottom-left {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+
+.blueprint-corner.bottom-right {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
