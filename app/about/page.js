@@ -1,4 +1,3 @@
-import ContactForm from "@/components/ContactForm";
 import Link from "next/link";
 
 export const metadata = { title: "À propos — EMI" };
@@ -34,16 +33,13 @@ export default function AboutPage() {
 
         <h2>Coordonnées</h2>
         <ul>
-          <li><strong>Adresse :</strong> 51 Rue François 1er – 75008 PARIS</li>
-          <li><strong>Téléphone :</strong> 01.44.43.01.00</li>
-          <li><strong>Entreprise :</strong> <a href="https://www.mc2i.fr" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)" }}>mc2i</a> – www.mc2i.fr</li>
-          <li><strong>LinkedIn :</strong> à ajouter</li>
-          <li><strong>Email :</strong> à ajouter</li>
+          <li><strong>Téléphone :</strong> <a href="tel:0765661994" style={{ color: "var(--accent)" }}>0765661994</a></li>
+          <li><strong>Email :</strong> <a href="mailto:eddymissoni.pro@gmail.com" style={{ color: "var(--accent)" }}>eddymissoni.pro@gmail.com</a></li>
         </ul>
 
         <h2>Formation</h2>
         <ul>
-          <li><strong>Master - Intelligence des Systèmes d'Information</strong> – Ecole de Management – 2019</li>
+          <li><strong>Master - Intelligence des Systèmes d'Information</strong></li>
         </ul>
 
         <h2>Certifications</h2>
@@ -51,6 +47,9 @@ export default function AboutPage() {
           <span className="badge">IBM AI Engineering Professional Certificate (IBM)</span>
           <span className="badge">ML Practitioner Certificate (DATAIKU)</span>
           <span className="badge">Spécialiste IA & Machine Learning (LinkedIn)</span>
+          <span className="badge">Generative AI Applications with RAG and LangChain (IBM)</span>
+          <span className="badge">Generative AI and LLMs: Architecture and Data Preparation (IBM)</span>
+          <span className="badge">Generative AI Advance Fine-Tuning for LLMs (IBM)</span>
         </div>
 
         <h2>Langues</h2>
@@ -66,6 +65,9 @@ export default function AboutPage() {
           <span className="badge">Fonctions support</span>
           <span className="badge">Industrie & Énergie</span>
           <span className="badge">R&D et Innovation</span>
+          <span className="badge">Transformation digitale</span>
+          <span className="badge">Architecture de données</span>
+          <span className="badge">Gouvernance des données</span>
         </div>
 
         <h2>Expertises méthodologiques</h2>
@@ -75,6 +77,9 @@ export default function AboutPage() {
           <span className="badge">Planification et cadrage de projet</span>
           <span className="badge">Conduite du changement & Formation</span>
           <span className="badge">Méthodologie agile</span>
+          <span className="badge">Architecture technique & Design</span>
+          <span className="badge">Gestion des risques & Qualité</span>
+          <span className="badge">Pilotage de projet & Reporting</span>
         </div>
 
         <h2>Outils et technologies</h2>
@@ -107,11 +112,8 @@ export default function AboutPage() {
           <h3 style={{ fontSize: "18px", marginBottom: "12px", color: "var(--accent)" }}>IA & Cloud</h3>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginBottom: "24px" }}>
             <span className="badge">Azure OpenAI</span>
-            <span className="badge">Azure AI</span>
             <span className="badge">AWS Bedrock</span>
-            <span className="badge">GPT-4</span>
             <span className="badge">Claude (Anthropic)</span>
-            <span className="badge">ChatGPT</span>
             <span className="badge">Copilot Studio</span>
             <span className="badge">Dataiku</span>
           </div>
@@ -134,17 +136,13 @@ export default function AboutPage() {
         <h2>Synthèse des expériences</h2>
         <ul>
           <li><strong>mc2i</strong> – Tech Lead du Stream IA & Data Science – 10 mois (01/2025 – En cours)</li>
-          <li><strong>TotalEnergies</strong> – Chef de Projet & Expert en Intelligence Artificielle – 1 an et 6 mois (05/2024 – En cours)</li>
+          <li><strong>Acteur majeur de l'énergie</strong> – Chef de Projet & Expert en Intelligence Artificielle – 1 an et 6 mois (05/2024 – En cours)</li>
           <li><strong>RATP</strong> – Chef de projet AMOA / AMOE Data & BI – 2 ans (05/2022 – 04/2024)</li>
           <li><strong>COJOP</strong> – Product Owner – 6 mois (10/2021 – 03/2022)</li>
-          <li><strong>LVMH</strong> – Chef de projet SI – 1 an et 10 mois (01/2020 – 10/2021)</li>
-          <li><strong>Safran</strong> – Master Data & AI Manager – 1 an (01/2019 – 12/2019)</li>
+          <li><strong>Acteur majeur de l'industrie du LUXE</strong> – Chef de projet SI – 1 an et 10 mois (01/2020 – 10/2021)</li>
+          <li><strong>Équipementier aéronautique mondial</strong> – Master Data & AI Manager – 1 an (01/2019 – 12/2019)</li>
           <li><strong>VIF Software</strong> – Chef de projet ERP – 6 mois (06/2018 – 11/2018)</li>
         </ul>
-        
-        <h2>Contact</h2>
-        <p>Pour me contacter, vous pouvez utiliser le formulaire ci-dessous ou m'envoyer un email directement.</p>
-        <ContactForm />
       </div>
     </>
   );

@@ -9,10 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "chart.js": "^4.5.1",
+    "gray-matter": "^4.0.3",
+    "mammoth": "^1.11.0",
+    "minisearch": "^7.2.0",
     "next": "^15.1.6",
+    "papaparse": "^5.5.3",
+    "pdf-parse": "^2.4.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "gray-matter": "^4.0.3"
+    "simple-statistics": "^7.8.8",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "eslint": "^8",

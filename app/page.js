@@ -1,11 +1,18 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import TypewriterTitle from "@/components/TypewriterTitle";
+import CaseStudyCard from "@/components/CaseStudyCard";
+import SkillsSection from "@/components/SkillsSection";
+import { caseStudies } from "@/lib/case-studies";
+import { skillToProjects } from "@/lib/skills";
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
   const [scrollY, setScrollY] = useState(0);
+  const [selectedSkill, setSelectedSkill] = useState(null);
+  const [filteredProjects, setFilteredProjects] = useState(caseStudies);
 
   useEffect(() => {
     setIsVisible(true);
@@ -17,6 +24,22 @@ export default function HomePage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (selectedSkill) {
+      const projectIds = skillToProjects[selectedSkill.id] || [];
+      const filtered = caseStudies.filter((project) =>
+        projectIds.includes(project.id)
+      );
+      setFilteredProjects(filtered);
+    } else {
+      setFilteredProjects(caseStudies);
+    }
+  }, [selectedSkill]);
+
+  const handleSkillFilter = (skill) => {
+    setSelectedSkill(skill);
+  };
 
   return (
     <div style={{ width: "100%", maxWidth: "100%", margin: 0, padding: 0 }}>
@@ -92,22 +115,9 @@ export default function HomePage() {
               borderBottom: "1px solid var(--line)",
               marginTop: "-16px"
             }}>
-              EDDY MISSONI IDEMBI
+              EDDY MISSONI
             </div>
-            <h1 style={{ 
-              fontSize: 64, 
-              fontWeight: 700, 
-              marginBottom: 24,
-              letterSpacing: "-3px",
-              lineHeight: 1.1,
-              color: "var(--fg)"
-            }}>
-              Chef de projet
-              <br />
-              <span style={{ color: "var(--accent)" }}>Tech Lead</span>
-              <br />
-              Data & IA
-            </h1>
+            <TypewriterTitle />
             <div style={{
               padding: "24px",
               border: "2px solid var(--line-blueprint)",
@@ -136,11 +146,11 @@ export default function HomePage() {
               </p>
             </div>
             <div className="actions" style={{ flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
-              <Link className="btn primary" href="#expertise" style={{ fontSize: 16, padding: "16px 32px", width: "100%", textAlign: "center" }}>
-                [ Découvrir mon expertise ]
+              <Link className="btn primary" href="/about" style={{ fontSize: 16, padding: "16px 32px", width: "100%", textAlign: "center" }}>
+                [ En savoir plus ]
               </Link>
-              <Link className="btn" href="/projects" style={{ fontSize: 16, padding: "16px 32px", width: "100%", textAlign: "center" }}>
-                [ Voir mes projets ]
+              <Link className="btn" href="/lab" style={{ fontSize: 16, padding: "16px 32px", width: "100%", textAlign: "center", border: "2px solid var(--accent)", background: "transparent", color: "var(--accent)" }}>
+                [ Accès au LAB ]
               </Link>
             </div>
           </div>
@@ -163,19 +173,21 @@ export default function HomePage() {
 
             <div style={{ paddingLeft: "48px", position: "relative", paddingTop: "0" }}>
               <div style={{ 
-                fontSize: 12, 
+                fontSize: 14, 
                 color: "var(--accent)", 
+                fontWeight: 600, 
+                letterSpacing: "2px", 
                 fontFamily: "monospace", 
-                marginBottom: 64, 
                 textTransform: "uppercase", 
-                letterSpacing: "2px",
+                marginBottom: 24,
                 position: "sticky",
                 top: "80px",
                 background: "var(--bg)",
                 paddingBottom: "16px",
                 paddingTop: "16px",
-                zIndex: 1,
-                borderBottom: "1px solid var(--line)"
+                zIndex: 10,
+                borderBottom: "1px solid var(--line)",
+                marginTop: "-16px"
               }}>
                 Expériences clés
               </div>
@@ -239,8 +251,9 @@ export default function HomePage() {
                 </div>
                 <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 16 }}>
                   Je pilote plus de quarante cas d'usage d'intelligence artificielle au sein de la R&D, 
-                  en concevant des plateformes d'idéation fondées sur des architectures RAG et l'intégration de modèles comme GPT-4, Mistral, Claude ou Gemini. 
-                  J'assure la cohérence technique, la sécurité, la conformité et la formation des chercheurs à ces nouveaux outils.
+                  en concevant une plateforme technique d'idéation fondée sur des architectures RAG et l'intégration de modèles comme GPT-4, Mistral, Claude ou Gemini. 
+                  Cette plateforme permet aux chercheurs de trouver de nouvelles solutions industrielles à partir de problèmes techniques complexes. 
+                  J'assure la cohérence technique, la sécurité, la conformité, l'acculturation à l'IA et la formation des chercheurs à ces nouveaux outils.
                 </p>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   <span className="badge">RAG</span>
@@ -359,148 +372,235 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Expertise - Full Width avec connexions */}
-      <section id="expertise" style={{ 
+      {/* Ligne de séparation horizontale */}
+      <div style={{
         width: "100%",
-        minHeight: "100vh",
         position: "relative",
-        padding: "120px 24px",
-        background: "var(--bg-secondary)"
+        padding: "80px 0",
+        margin: "0"
       }}>
-        {/* Ligne de connexion horizontale en haut */}
+        {/* Ligne verticale de référence (même position que dans les sections) */}
         <div style={{
           position: "absolute",
-          top: 0,
           left: "5%",
-          right: "5%",
-          height: "2px",
+          top: 0,
+          bottom: 0,
+          width: "2px",
+          background: "var(--line-blueprint)",
+          zIndex: 0
+        }} />
+        
+        <div style={{
+          maxWidth: "1400px",
+          width: "100%",
+          margin: "0 auto",
+          padding: "0 24px",
+          position: "relative"
+        }}>
+          {/* Ligne horizontale qui part de la ligne verticale */}
+          <div style={{
+            position: "relative",
+            height: "2px",
+            background: "var(--line-blueprint)",
+            left: "calc(5% - 24px)",
+            width: "calc(100% - 5% + 24px)"
+          }}>
+            {/* Point de connexion à gauche (à l'intersection avec la ligne verticale) */}
+            <div style={{
+              position: "absolute",
+              left: "0",
+              top: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "12px",
+              height: "12px",
+              borderRadius: "50%",
+              background: "var(--accent)",
+              border: "3px solid var(--bg)",
+              zIndex: 2
+            }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Section Compétences */}
+      <SkillsSection onFilterChange={handleSkillFilter} />
+
+      {/* Section Réalisations */}
+      <section
+        style={{
+          width: "100%",
+          background: "var(--bg)",
+          padding: "0",
+          position: "relative"
+        }}
+      >
+        {/* Ligne de connexion verticale à gauche */}
+        <div style={{
+          position: "absolute",
+          left: "5%",
+          top: 0,
+          bottom: 0,
+          width: "2px",
           background: "var(--line-blueprint)",
           zIndex: 0
         }} />
 
-        {/* Point de connexion central */}
-        <div style={{
-          position: "absolute",
-          top: "-8px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "16px",
-          height: "16px",
-          borderRadius: "50%",
-          background: "var(--accent)",
-          border: "3px solid var(--bg-secondary)",
-          zIndex: 2
-        }} />
-
-        <div style={{ maxWidth: "1600px", margin: "0 auto", width: "100%" }}>
-          <div style={{ textAlign: "center", marginBottom: 80 }}>
-            <h2 style={{ fontSize: 56, fontWeight: 700, marginBottom: 24, letterSpacing: "-2px" }}>
-              6 Espaces d'expertise
+        <div style={{ 
+          maxWidth: "1400px",
+          width: "100%",
+          margin: "0 auto",
+          padding: "120px 24px",
+          position: "relative",
+          zIndex: 1
+        }}>
+          {/* Titre de section - aligné avec la colonne droite de la section Hero */}
+          <div
+            style={{
+              marginBottom: "80px",
+              paddingLeft: "48px",
+              position: "relative"
+            }}
+          >
+            {/* Point de connexion */}
+            <div
+              style={{
+                position: "absolute",
+                left: "-48px",
+                top: "8px",
+                width: "12px",
+                height: "12px",
+                borderRadius: "50%",
+                background: "var(--accent)",
+                border: "3px solid var(--bg)",
+                zIndex: 2
+              }}
+            />
+            <div
+              style={{
+                fontSize: 14,
+                color: "var(--accent)",
+                fontWeight: 600,
+                letterSpacing: "2px",
+                fontFamily: "monospace",
+                textTransform: "uppercase",
+                marginBottom: "16px"
+              }}
+            >
+              Réalisations
+            </div>
+            <h2
+              style={{
+                fontSize: 48,
+                fontWeight: 700,
+                margin: 0,
+                marginBottom: "16px",
+                color: "var(--fg)"
+              }}
+            >
+              Projets en détail
             </h2>
-            <p style={{ fontSize: 20, color: "var(--fg-muted)", maxWidth: 800, margin: "0 auto", lineHeight: 1.8 }}>
-              Expérimentez mes compétences à travers des démonstrations interactives fonctionnelles, 
-              reliées à mes expériences professionnelles concrètes dans l'énergie, le luxe, le transport et la R&D.
+            <p
+              style={{
+                fontSize: 18,
+                lineHeight: 1.8,
+                color: "var(--fg-muted)",
+                whiteSpace: "nowrap"
+              }}
+            >
+              Découvrez comment j'ai transformé des défis complexes en solutions concrètes, en alliant vision stratégique et expertise technique.
             </p>
           </div>
 
-          {/* Grille des Labs avec connexions */}
-          <div style={{ 
-            display: "grid", 
-            gridTemplateColumns: "repeat(3, 1fr)", 
-            gap: 40,
-            position: "relative"
-          }}>
-            {/* Lignes de connexion entre les cartes */}
-            <div style={{
-              position: "absolute",
-              top: "50%",
-              left: "33.33%",
-              width: "33.33%",
-              height: "2px",
-              background: "var(--line-blueprint)",
-              opacity: 0.3,
-              zIndex: 0
-            }} />
-
-            {[
-              { href: "/labs/rag-studio", title: "RAG Studio", desc: "IA Générative & Knowledge", tags: ["RAG", "Hugging Face", "Vectorisation"], num: "01" },
-              { href: "/labs/gen-lab", title: "GEN Lab", desc: "LLM Engineering & Agents", tags: ["LLM", "Agents", "Orchestration"], num: "02" },
-              { href: "/labs/fyne", title: "FYNE", desc: "Plateforme immersive & Gestion de projet", tags: ["Immersif", "Gamification", "Projet"], num: "03" },
-              { href: "/labs/data-cloud", title: "DATA & CLOUD", desc: "Industrialisation & Architecture", tags: ["Cloud", "Architecture", "DevOps"], num: "04" },
-              { href: "/labs/bi-studio", title: "BI Studio", desc: "Business Intelligence & Décisionnel", tags: ["BI", "Dashboards", "KPIs"], num: "05" },
-              { href: "/labs/data-science", title: "Data Science", desc: "Analyse & Modélisation", tags: ["ML", "Analyse", "Prédiction"], num: "06" },
-            ].map((lab, index) => (
-              <Link
-                key={lab.href}
-                href={lab.href}
-                className="card"
-                style={{ 
-                  display: "block",
-                  padding: "40px",
-                  position: "relative",
-                  textDecoration: "none",
-                  transition: "all 0.3s ease"
+          {/* Filtre actif */}
+          {selectedSkill && (
+            <div
+              style={{
+                paddingLeft: "48px",
+                marginBottom: "32px",
+                display: "flex",
+                alignItems: "center",
+                gap: "16px"
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 14,
+                  color: "var(--fg-muted)",
+                  fontFamily: "monospace"
                 }}
-                onMouseEnter={() => setActiveSection(index)}
-                onMouseLeave={() => setActiveSection(null)}
               >
-                {/* Numéro en haut à gauche */}
-                <div style={{
-                  position: "absolute",
-                  top: "-12px",
-                  left: "-12px",
-                  width: "48px",
-                  height: "48px",
-                  background: "var(--accent)",
-                  color: "white",
+                Filtre actif :
+              </div>
+              <div
+                style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 18,
-                  fontWeight: 700,
-                  fontFamily: "monospace",
-                  border: "3px solid var(--bg-secondary)",
-                  zIndex: 2
-                }}>
-                  {lab.num}
-                </div>
+                  gap: "8px",
+                  padding: "8px 16px",
+                  background: "var(--bg-secondary)",
+                  border: "2px solid var(--accent)",
+                  borderRadius: "4px"
+                }}
+              >
+                <span style={{ fontSize: "20px" }}>{selectedSkill.icon}</span>
+                <span
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    color: "var(--accent)"
+                  }}
+                >
+                  {selectedSkill.name}
+                </span>
+                <button
+                  onClick={() => handleSkillFilter(null)}
+                  style={{
+                    marginLeft: "8px",
+                    background: "transparent",
+                    border: "none",
+                    color: "var(--fg-muted)",
+                    cursor: "pointer",
+                    fontSize: "18px",
+                    padding: "0",
+                    width: "20px",
+                    height: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.color = "var(--accent)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.color = "var(--fg-muted)";
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+              <div
+                style={{
+                  fontSize: 14,
+                  color: "var(--fg-muted)",
+                  fontFamily: "monospace"
+                }}
+              >
+                {filteredProjects.length} projet{filteredProjects.length > 1 ? "s" : ""} trouvé{filteredProjects.length > 1 ? "s" : ""}
+              </div>
+            </div>
+          )}
 
-                {/* Ligne de connexion depuis le numéro */}
-                <div style={{
-                  position: "absolute",
-                  top: "12px",
-                  left: "36px",
-                  width: activeSection === index ? "100px" : "40px",
-                  height: "2px",
-                  background: activeSection === index ? "var(--accent)" : "var(--line-blueprint)",
-                  transition: "all 0.3s ease",
-                  zIndex: 1
-                }} />
-
-                <h3 style={{ fontSize: 28, marginTop: 24, marginBottom: 12, fontWeight: 700 }}>
-                  {lab.title}
-                </h3>
-                <p style={{ fontSize: 15, lineHeight: 1.7, color: "var(--fg-muted)", marginBottom: 24 }}>
-                  {lab.desc}
-                </p>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
-                  {lab.tags.map(tag => (
-                    <span key={tag} className="badge" style={{ fontSize: 11 }}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div style={{ 
-                  fontSize: 13, 
-                  color: "var(--accent)", 
-                  fontFamily: "monospace",
-                  textTransform: "uppercase",
-                  letterSpacing: "1px"
-                }}>
-                  → Expérimenter
-                </div>
-              </Link>
-            ))}
+          {/* Cartes de cas d'usage - alignées avec la colonne droite */}
+          <div style={{ paddingLeft: "48px" }}>
+            {filteredProjects && filteredProjects.length > 0 ? (
+              filteredProjects.map((project, index) => (
+                <CaseStudyCard key={project.id} project={project} index={index} />
+              ))
+            ) : (
+              <div style={{ padding: "40px", textAlign: "center", color: "var(--fg-muted)" }}>
+                Aucun projet trouvé pour cette compétence.
+              </div>
+            )}
           </div>
         </div>
       </section>

@@ -15,3 +15,13 @@ if (Test-Path node_modules/.cache) {
 
 Write-Host "Nettoyage terminé. Redémarrez le serveur avec: npm run dev"
 
+
+
+
+
+
+
+
+
+
+
