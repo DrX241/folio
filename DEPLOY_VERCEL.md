@@ -45,7 +45,7 @@ Vercel détectera automatiquement Next.js. Vérifiez que :
    
    **Variable 1 :**
    - Name : `HUGGINGFACE_API_KEY`
-   - Value : `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`
+   - Value : `votre_token_huggingface` (⚠️ Créez un nouveau token sur https://huggingface.co/settings/tokens - NE JAMAIS commiter le token dans le code !)
    - Environments : ✅ Production, ✅ Preview, ✅ Development
 
    **Variable 2 (optionnel) :**
