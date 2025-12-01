@@ -2,16 +2,19 @@
 import { useParams } from "next/navigation";
 import TextToSQL from "@/components/TextToSQL";
 import AnomalyDetector from "@/components/AnomalyDetector";
+import RAGMultiProviderChat from "@/components/RAGMultiProviderChat";
 import Link from "next/link";
 
 const toolComponents = {
   "text-to-sql": TextToSQL,
-  "anomaly-detector": AnomalyDetector
+  "anomaly-detector": AnomalyDetector,
+  "rag-multi-chat": RAGMultiProviderChat
 };
 
 const toolNames = {
   "text-to-sql": "Text-to-SQL",
-  "anomaly-detector": "Détecteur d'Anomalies"
+  "anomaly-detector": "Détecteur d'Anomalies",
+  "rag-multi-chat": "Chatbot IA multi-fournisseurs"
 };
 
 export default function ToolPage() {

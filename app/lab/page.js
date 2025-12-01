@@ -4,6 +4,13 @@ import { useState } from "react";
 
 const tools = [
   {
+    id: "rag-multi-chat",
+    name: "Chatbot IA multi-fournisseurs",
+    description: "Branchez vos propres clés (Hugging Face, Azure OpenAI, Bedrock via API) et testez un chatbot IA configurable en temps réel.",
+    category: "IA & LLM",
+    color: "#0ea5e9"
+  },
+  {
     id: "anomaly-detector",
     name: "Détecteur d'Anomalies",
     description: "Détectez automatiquement les anomalies dans vos données avec des méthodes statistiques avancées. Testez avec des cas d'usage métier prêts à l'emploi.",

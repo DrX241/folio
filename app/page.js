@@ -389,7 +389,7 @@ export default function HomePage() {
           background: "var(--line-blueprint)",
           zIndex: 0
         }} />
-        
+
         <div style={{
           maxWidth: "1400px",
           width: "100%",
@@ -469,10 +469,10 @@ export default function HomePage() {
                 top: "8px",
                 width: "12px",
                 height: "12px",
-                borderRadius: "50%",
-                background: "var(--accent)",
+          borderRadius: "50%",
+          background: "var(--accent)",
                 border: "3px solid var(--bg)",
-                zIndex: 2
+          zIndex: 2
               }}
             />
             <div
@@ -523,7 +523,7 @@ export default function HomePage() {
               }}
             >
               <div
-                style={{
+                style={{ 
                   fontSize: 14,
                   color: "var(--fg-muted)",
                   fontFamily: "monospace"
@@ -586,8 +586,8 @@ export default function HomePage() {
                 }}
               >
                 {filteredProjects.length} projet{filteredProjects.length > 1 ? "s" : ""} trouvé{filteredProjects.length > 1 ? "s" : ""}
-              </div>
-            </div>
+                </div>
+                </div>
           )}
 
           {/* Cartes de cas d'usage - alignées avec la colonne droite */}
@@ -599,7 +599,7 @@ export default function HomePage() {
             ) : (
               <div style={{ padding: "40px", textAlign: "center", color: "var(--fg-muted)" }}>
                 Aucun projet trouvé pour cette compétence.
-              </div>
+                </div>
             )}
           </div>
         </div>

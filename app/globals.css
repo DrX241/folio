@@ -691,3 +691,10 @@ form textarea::placeholder {
   border-left: none;
   border-top: none;
 }
+
+/* Responsive pour Text-to-SQL : deux colonnes sur mobile */
+@media (max-width: 1024px) {
+  .text-to-sql-results {
+    grid-template-columns: 1fr !important;
+  }
+}

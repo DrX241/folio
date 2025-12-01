@@ -41,7 +41,8 @@ IMPORTANT :
     ];
 
     // Utiliser l'API Router de Hugging Face avec format OpenAI compatible
-    // Modèle gratuit avec provider hf-inference (testé et fonctionnel)
+    // Pour Text-to-SQL, utiliser un modèle plus puissant si disponible
+    // SmolLM3-3B pour le chatbot général, mais peut être limité pour SQL complexe
     const model = "HuggingFaceTB/SmolLM3-3B";
     
     // Utiliser la nouvelle API router.huggingface.co avec format OpenAI
