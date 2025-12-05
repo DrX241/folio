@@ -63,7 +63,7 @@ export default function ToolPage() {
       background: "var(--bg)"
     }}>
       {/* Header avec navigation */}
-      <div style={{
+      <div className="lab-tool-header" style={{
         background: "var(--bg-secondary)",
         borderBottom: "2px solid var(--line-blueprint)",
         padding: "24px",
@@ -71,7 +71,7 @@ export default function ToolPage() {
         top: 0,
         zIndex: 100
       }}>
-        <div style={{
+        <div className="lab-tool-header-nav" style={{
           maxWidth: "1400px",
           margin: "0 auto",
           display: "flex",
@@ -145,7 +145,7 @@ export default function ToolPage() {
       </div>
 
       {/* Contenu de l'outil */}
-      <div style={{
+      <div className="lab-tool-content" style={{
         maxWidth: "1400px",
         margin: "0 auto",
         padding: "48px 24px"

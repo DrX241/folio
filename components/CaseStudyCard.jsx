@@ -76,6 +76,7 @@ export default function CaseStudyCard({ project, index }) {
       }}
     >
       <div
+        className="case-study-card"
         style={{
           border: "2px solid var(--line-blueprint)",
           background: "var(--bg-secondary)",
@@ -100,6 +101,7 @@ export default function CaseStudyCard({ project, index }) {
         {/* En-tête */}
         <div style={{ marginBottom: "24px" }}>
           <div
+            className="case-study-subtitle"
             style={{
               fontSize: 11,
               color: "var(--accent)",
@@ -112,6 +114,7 @@ export default function CaseStudyCard({ project, index }) {
             {project.client} • {project.period}
           </div>
           <h3
+            className="case-study-title"
             style={{
               margin: 0,
               fontSize: 28,
@@ -136,6 +139,7 @@ export default function CaseStudyCard({ project, index }) {
         {/* Timeline narrative (Problème → Solution → Résultat) */}
         <div style={{ marginBottom: "32px" }}>
           <div
+            className="case-study-steps"
             style={{
               display: "flex",
               gap: "16px",
@@ -147,6 +151,7 @@ export default function CaseStudyCard({ project, index }) {
               <button
                 key={idx}
                 onClick={() => setActiveStep(idx)}
+                className="case-study-step-btn"
                 style={{
                   flex: 1,
                   minWidth: "120px",
@@ -210,6 +215,7 @@ export default function CaseStudyCard({ project, index }) {
         {/* Métriques animées */}
         {project.metrics && project.metrics.length > 0 && (
           <div
+            className="case-study-metrics"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
@@ -221,8 +227,9 @@ export default function CaseStudyCard({ project, index }) {
             }}
           >
             {project.metrics.map((metric) => (
-              <div key={metric.key} style={{ textAlign: "center" }}>
+              <div key={metric.key} className="case-study-metric" style={{ textAlign: "center" }}>
                 <div
+                  className="case-study-metric-value"
                   style={{
                     fontSize: 32,
                     fontWeight: 700,
@@ -237,6 +244,7 @@ export default function CaseStudyCard({ project, index }) {
                   {metric.suffix}
                 </div>
                 <div
+                  className="case-study-metric-label"
                   style={{
                     fontSize: 12,
                     color: "var(--fg-muted)",
@@ -268,6 +276,7 @@ export default function CaseStudyCard({ project, index }) {
               Stack technique
             </div>
             <div
+              className="case-study-tags"
               style={{
                 display: "flex",
                 flexWrap: "wrap",
@@ -277,7 +286,7 @@ export default function CaseStudyCard({ project, index }) {
               {project.stack.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="badge"
+                  className="badge case-study-tag"
                   style={{
                     fontSize: 13,
                     padding: "6px 12px"

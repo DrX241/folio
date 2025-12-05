@@ -69,7 +69,7 @@ export default function LabPage() {
       background: "var(--bg)"
     }}>
       {/* Header */}
-      <div style={{
+      <div className="lab-header" style={{
         background: "var(--bg-secondary)",
         borderBottom: "2px solid var(--line-blueprint)",
         padding: "32px 24px",
@@ -85,7 +85,7 @@ export default function LabPage() {
           alignItems: "center"
         }}>
           <div>
-            <h1 style={{
+            <h1 className="lab-title" style={{
               fontSize: "32px",
               fontWeight: 700,
               marginBottom: "8px",
@@ -93,7 +93,7 @@ export default function LabPage() {
             }}>
               LAB — Outils Techniques
             </h1>
-            <p style={{
+            <p className="lab-subtitle" style={{
               fontSize: "14px",
               color: "var(--fg-muted)",
               margin: 0
@@ -137,7 +137,7 @@ export default function LabPage() {
       }}>
         {/* Filtres par catégorie */}
         <div style={{ marginBottom: "32px" }}>
-          <div style={{
+          <div className="lab-category-filters" style={{
             display: "flex",
             gap: "12px",
             flexWrap: "wrap"
@@ -146,6 +146,7 @@ export default function LabPage() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
+                className="lab-category-btn"
                 style={{
                   padding: "10px 20px",
                   background: selectedCategory === cat ? "var(--accent)" : "var(--bg-secondary)",
@@ -168,7 +169,7 @@ export default function LabPage() {
         </div>
 
         {/* Grille d'outils */}
-        <div style={{
+        <div className="lab-tool-grid" style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
           gap: "24px"
@@ -177,6 +178,7 @@ export default function LabPage() {
             <Link
               key={tool.id}
               href={`/lab/${tool.id}`}
+              className="lab-tool-card"
               style={{
                 textDecoration: "none",
                 display: "block"

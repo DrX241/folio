@@ -849,6 +849,109 @@ form textarea::placeholder {
   }
 }
 
+/* Responsive pour LAB Pages */
+@media (max-width: 1024px) {
+  .lab-header {
+    padding: 20px 16px !important;
+  }
+  
+  .lab-tool-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+  
+  .lab-tool-header-nav {
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: flex-start !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .lab-header {
+    padding: 16px 12px !important;
+  }
+  
+  .lab-title {
+    font-size: 32px !important;
+  }
+  
+  .lab-subtitle {
+    font-size: 16px !important;
+  }
+  
+  .lab-tool-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  
+  .lab-tool-card {
+    padding: 16px !important;
+  }
+  
+  .lab-tool-header {
+    padding: 16px 12px !important;
+  }
+  
+  .lab-tool-header h1 {
+    font-size: 18px !important;
+  }
+  
+  .lab-tool-content {
+    padding: 16px 12px !important;
+  }
+  
+  .lab-category-filters {
+    gap: 8px !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+  
+  .lab-category-btn {
+    font-size: 11px !important;
+    padding: 6px 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .lab-header {
+    padding: 12px !important;
+  }
+  
+  .lab-title {
+    font-size: 24px !important;
+  }
+  
+  .lab-subtitle {
+    font-size: 14px !important;
+  }
+  
+  .lab-tool-card {
+    padding: 12px !important;
+  }
+  
+  .lab-tool-card h3 {
+    font-size: 16px !important;
+  }
+  
+  .lab-tool-card p {
+    font-size: 13px !important;
+  }
+  
+  .lab-tool-header h1 {
+    font-size: 16px !important;
+  }
+  
+  .lab-category-filters {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  .lab-category-btn {
+    text-align: center !important;
+  }
+}
+
 /* Responsive pour Homepage - Adaptation mobile/tablette */
 @media (max-width: 1024px) {
   /* Hero Section - Passer en une colonne */
@@ -1014,5 +1117,292 @@ form textarea::placeholder {
   
   .homepage-projects {
     padding-left: 20px !important;
+  }
+}
+
+/* Responsive pour CaseStudyCard */
+@media (max-width: 1024px) {
+  .case-study-card {
+    padding: 20px !important;
+  }
+  
+  .case-study-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  
+  .case-study-steps {
+    flex-direction: column !important;
+  }
+  
+  .case-study-step-btn {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+  
+  .case-study-metrics {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .case-study-card {
+    padding: 16px !important;
+    margin-bottom: 32px !important;
+  }
+  
+  .case-study-title {
+    font-size: 20px !important;
+  }
+  
+  .case-study-tags {
+    gap: 6px !important;
+  }
+  
+  .case-study-tag {
+    font-size: 10px !important;
+    padding: 4px 8px !important;
+  }
+  
+  .case-study-content {
+    padding: 16px !important;
+    font-size: 14px !important;
+  }
+  
+  .case-study-metrics {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  
+  .case-study-metric {
+    padding: 16px !important;
+  }
+  
+  .case-study-metric-value {
+    font-size: 32px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .case-study-card {
+    padding: 12px !important;
+    margin-bottom: 24px !important;
+  }
+  
+  .case-study-title {
+    font-size: 18px !important;
+  }
+  
+  .case-study-subtitle {
+    font-size: 12px !important;
+  }
+  
+  .case-study-content {
+    padding: 12px !important;
+    font-size: 13px !important;
+  }
+  
+  .case-study-step-btn {
+    font-size: 12px !important;
+    padding: 10px 12px !important;
+  }
+  
+  .case-study-metric-value {
+    font-size: 28px !important;
+  }
+  
+  .case-study-metric-label {
+    font-size: 11px !important;
+  }
+}
+
+/* Responsive pour SkillsSection */
+@media (max-width: 1024px) {
+  .skills-section {
+    padding: 80px 16px !important;
+  }
+  
+  .skills-radar {
+    max-width: 500px !important;
+  }
+  
+  .skills-list-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-section {
+    padding: 60px 12px !important;
+  }
+  
+  .skills-title {
+    font-size: 32px !important;
+  }
+  
+  .skills-radar {
+    max-width: 100% !important;
+    height: 400px !important;
+  }
+  
+  .skills-list-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+  
+  .skills-card {
+    padding: 16px !important;
+  }
+  
+  .skills-card-name {
+    font-size: 14px !important;
+  }
+  
+  .skills-card-description {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-section {
+    padding: 40px 12px !important;
+  }
+  
+  .skills-title {
+    font-size: 24px !important;
+  }
+  
+  .skills-subtitle {
+    font-size: 14px !important;
+  }
+  
+  .skills-radar {
+    height: 300px !important;
+  }
+  
+  .skills-list-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .skills-card {
+    padding: 12px !important;
+  }
+  
+  .skills-card-icon {
+    font-size: 24px !important;
+  }
+  
+  .skills-card-name {
+    font-size: 13px !important;
+  }
+}
+
+/* Responsive pour composants LAB génériques */
+@media (max-width: 1024px) {
+  /* Formulaires */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 14px !important;
+  }
+  
+  /* Tableaux */
+  table {
+    font-size: 13px !important;
+  }
+  
+  th, td {
+    padding: 8px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Formulaires */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 13px !important;
+    padding: 10px !important;
+  }
+  
+  button {
+    font-size: 13px !important;
+    padding: 10px 16px !important;
+  }
+  
+  /* Tableaux - Scroll horizontal */
+  .table-container {
+    overflow-x: auto !important;
+  }
+  
+  table {
+    min-width: 600px !important;
+    font-size: 12px !important;
+  }
+  
+  th, td {
+    padding: 6px !important;
+    white-space: nowrap !important;
+  }
+  
+  /* Grilles de résultats */
+  .results-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Cartes */
+  .result-card {
+    padding: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Formulaires ultra-compact */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 12px !important;
+    padding: 8px !important;
+  }
+  
+  button {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+  }
+  
+  label {
+    font-size: 11px !important;
+  }
+  
+  /* Tableaux */
+  table {
+    font-size: 11px !important;
+  }
+  
+  th, td {
+    padding: 4px !important;
+  }
+  
+  /* Titres */
+  h1 {
+    font-size: 20px !important;
+  }
+  
+  h2 {
+    font-size: 18px !important;
+  }
+  
+  h3 {
+    font-size: 16px !important;
   }
 }

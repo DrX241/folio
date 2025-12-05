@@ -82,6 +82,7 @@ export default function SkillsSection({ onFilterChange }) {
       />
 
       <div
+        className="skills-section"
         style={{
           maxWidth: "1400px",
           width: "100%",
@@ -127,6 +128,7 @@ export default function SkillsSection({ onFilterChange }) {
             Compétences
           </div>
           <h2
+            className="skills-title"
             style={{
               fontSize: 48,
               fontWeight: 700,
@@ -159,6 +161,7 @@ export default function SkillsSection({ onFilterChange }) {
         >
           {/* Colonne gauche - Graphique radar (STICKY) */}
           <div
+            className="skills-radar"
             style={{
               position: "sticky",
               top: "100px",
