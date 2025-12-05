@@ -53,7 +53,7 @@ export default function HomePage() {
         padding: "0"
       }}>
         {/* Ligne de connexion verticale à gauche */}
-        <div style={{
+        <div className="homepage-vertical-line-fixed" style={{
           position: "fixed",
           left: "5%",
           top: 0,
@@ -63,7 +63,7 @@ export default function HomePage() {
           zIndex: 0
         }} />
 
-        <div style={{ 
+        <div className="homepage-hero-grid" style={{ 
           maxWidth: "1400px",
           width: "100%",
           margin: "0 auto",
@@ -75,7 +75,7 @@ export default function HomePage() {
           zIndex: 1
         }}>
           {/* Colonne gauche - Profil FIXE */}
-          <div style={{ 
+          <div className="homepage-profile-sticky" style={{ 
             position: "sticky",
             top: "80px",
             alignSelf: "flex-start",
@@ -98,7 +98,7 @@ export default function HomePage() {
             }} />
             
             {/* Titre fixe en haut */}
-            <div style={{ 
+            <div className="homepage-hero-title" style={{ 
               fontSize: 14, 
               color: "var(--accent)", 
               fontWeight: 600, 
@@ -118,7 +118,7 @@ export default function HomePage() {
               EDDY MISSONI
             </div>
             <TypewriterTitle />
-            <div style={{
+            <div className="homepage-intro-box" style={{
               padding: "24px",
               border: "2px solid var(--line-blueprint)",
               background: "var(--bg-secondary)",
@@ -145,7 +145,7 @@ export default function HomePage() {
                 J'assure le <strong style={{ color: "var(--accent)" }}>"quoi"</strong> et le <strong style={{ color: "var(--accent)" }}>"quand"</strong> en tant que <strong style={{ color: "var(--accent)" }}>chef de projet</strong>, et le <strong style={{ color: "var(--accent)" }}>"comment bien"</strong> en tant que <strong style={{ color: "var(--accent)" }}>Tech Lead</strong>.
               </p>
             </div>
-            <div className="actions" style={{ flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
+            <div className="actions homepage-actions" style={{ flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
               <Link className="btn primary" href="/about" style={{ fontSize: 16, padding: "16px 32px", width: "100%", textAlign: "center" }}>
                 [ En savoir plus ]
               </Link>
@@ -161,7 +161,7 @@ export default function HomePage() {
             paddingTop: "0"
           }}>
             {/* Ligne de timeline verticale - s'étend sur toute la hauteur */}
-            <div style={{
+            <div className="homepage-timeline-line" style={{
               position: "absolute",
               left: 0,
               top: 0,
@@ -171,7 +171,7 @@ export default function HomePage() {
               zIndex: 0
             }} />
 
-            <div style={{ paddingLeft: "48px", position: "relative", paddingTop: "0" }}>
+            <div className="homepage-experiences" style={{ paddingLeft: "48px", position: "relative", paddingTop: "0" }}>
               <div style={{ 
                 fontSize: 14, 
                 color: "var(--accent)", 
@@ -194,7 +194,7 @@ export default function HomePage() {
               
               {/* Expérience 1 */}
               <div style={{ marginBottom: 80, position: "relative" }}>
-                <div style={{
+                <div className="homepage-connection-dot" style={{
                   position: "absolute",
                   left: "-48px",
                   top: "8px",
@@ -205,16 +205,16 @@ export default function HomePage() {
                   border: "3px solid var(--bg)",
                   zIndex: 2
                 }} />
-                <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
+                <div className="homepage-exp-date" style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
                   01/2025 — En cours
                 </div>
-                <h3 style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
+                <h3 className="homepage-exp-title" style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
                   Tech Lead — Stream IA & Data Science
                 </h3>
-                <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
+                <div className="homepage-exp-company" style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
                   Cabinet de conseil
                 </div>
-                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 16 }}>
+                <p className="homepage-exp-description" style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 16 }}>
                   J'accompagne la structuration et le pilotage de l'ensemble des projets IA du cabinet, de l'idée à l'industrialisation. 
                   Je coordonne la communauté Data & IA, développe des solutions d'IA générative comme le RAG multi-modèles, 
                   et j'ai créé le média IA'ctualités pour diffuser la culture IA en interne et auprès des écoles partenaires.
@@ -435,7 +435,7 @@ export default function HomePage() {
         }}
       >
         {/* Ligne de connexion verticale à gauche */}
-        <div style={{
+        <div className="homepage-vertical-line-fixed" style={{
           position: "absolute",
           left: "5%",
           top: 0,
@@ -445,7 +445,7 @@ export default function HomePage() {
           zIndex: 0
         }} />
 
-        <div style={{ 
+        <div className="homepage-section-padding" style={{ 
           maxWidth: "1400px",
           width: "100%",
           margin: "0 auto",
@@ -463,6 +463,7 @@ export default function HomePage() {
           >
             {/* Point de connexion */}
             <div
+              className="homepage-connection-dot"
               style={{
                 position: "absolute",
                 left: "-48px",
@@ -476,6 +477,7 @@ export default function HomePage() {
               }}
             />
             <div
+              className="homepage-section-label"
               style={{
                 fontSize: 14,
                 color: "var(--accent)",
@@ -489,6 +491,7 @@ export default function HomePage() {
               Réalisations
             </div>
             <h2
+              className="homepage-section-title"
               style={{
                 fontSize: 48,
                 fontWeight: 700,
@@ -500,6 +503,7 @@ export default function HomePage() {
               Projets en détail
             </h2>
             <p
+              className="homepage-section-subtitle"
               style={{
                 fontSize: 18,
                 lineHeight: 1.8,
@@ -591,7 +595,7 @@ export default function HomePage() {
           )}
 
           {/* Cartes de cas d'usage - alignées avec la colonne droite */}
-          <div style={{ paddingLeft: "48px" }}>
+          <div className="homepage-projects" style={{ paddingLeft: "48px" }}>
             {filteredProjects && filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
                 <CaseStudyCard key={project.id} project={project} index={index} />
