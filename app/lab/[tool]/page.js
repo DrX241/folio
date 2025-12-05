@@ -3,18 +3,30 @@ import { useParams } from "next/navigation";
 import TextToSQL from "@/components/TextToSQL";
 import AnomalyDetector from "@/components/AnomalyDetector";
 import RAGMultiProviderChat from "@/components/RAGMultiProviderChat";
+import TestDataGenerator from "@/components/TestDataGenerator";
+import PromptEvaluator from "@/components/PromptEvaluator";
+import LearningPathPlanner from "@/components/LearningPathPlanner";
+import DataAnonymizer from "@/components/DataAnonymizer";
 import Link from "next/link";
 
 const toolComponents = {
   "text-to-sql": TextToSQL,
   "anomaly-detector": AnomalyDetector,
-  "rag-multi-chat": RAGMultiProviderChat
+  "rag-multi-chat": RAGMultiProviderChat,
+  "test-data-generator": TestDataGenerator,
+  "prompt-engineering-challenge": PromptEvaluator,
+  "learning-path-planner": LearningPathPlanner,
+  "data-anonymizer": DataAnonymizer
 };
 
 const toolNames = {
   "text-to-sql": "Text-to-SQL",
   "anomaly-detector": "Détecteur d'Anomalies",
-  "rag-multi-chat": "Chatbot IA multi-fournisseurs"
+  "rag-multi-chat": "Chatbot IA multi-fournisseurs",
+  "test-data-generator": "Générateur de jeux de test",
+  "prompt-engineering-challenge": "Évaluateur de Prompt",
+  "learning-path-planner": "Planificateur de Formation Data/IA",
+  "data-anonymizer": "Anonymiseur de Données RGPD"
 };
 
 export default function ToolPage() {
