@@ -1,15 +1,24 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import SkillsRadarChart from "./SkillsRadarChart";
 import SkillsProgressBars from "./SkillsProgressBars";
 import { skills, technologies, skillToTechnologies } from "@/lib/skills";
 
-export default function SkillsSection({ onFilterChange }) {
-  // Sélectionner "Stratégie & Gouvernance IA" par défaut
-  const defaultSkill = skills.find(skill => skill.id === "strategie-ia");
-  const [selectedSkill, setSelectedSkill] = useState(defaultSkill || null);
+export default function SkillsSection() {
+  // Sélectionner une compétence par défaut pour activer le filtre "Expertise & Technologies"
+  const defaultSkill = skills.find((skill) => skill.id === "strategie-ia") || skills[0] || null;
+  const [selectedSkill, setSelectedSkill] = useState(defaultSkill);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+
+  const handleSkillClick = (skill) => {
+    if (!skill) return;
+    if (selectedSkill?.id === skill.id) {
+      setSelectedSkill(null);
+      return;
+    }
+    setSelectedSkill(skill);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,29 +40,6 @@ export default function SkillsSection({ onFilterChange }) {
       }
     };
   }, []);
-
-  // Notifier le parent du filtre par défaut au montage
-  useEffect(() => {
-    if (defaultSkill && onFilterChange) {
-      onFilterChange(defaultSkill);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleSkillClick = (skill) => {
-    if (selectedSkill?.id === skill.id) {
-      // Deselect
-      setSelectedSkill(null);
-      if (onFilterChange) {
-        onFilterChange(null);
-      }
-    } else {
-      setSelectedSkill(skill);
-      if (onFilterChange) {
-        onFilterChange(skill);
-      }
-    }
-  };
 
   return (
     <section
@@ -146,7 +132,7 @@ export default function SkillsSection({ onFilterChange }) {
               color: "var(--fg-muted)"
             }}
           >
-            Cliquez sur une compétence pour filtrer les projets correspondants
+            Cliquez sur une compétence pour filtrer les technologies correspondantes.
           </p>
         </div>
 
@@ -203,7 +189,7 @@ export default function SkillsSection({ onFilterChange }) {
                 >
                   {selectedSkill.name}
                 </h3>
-                
+
                 <p
                   style={{
                     fontSize: "14px",

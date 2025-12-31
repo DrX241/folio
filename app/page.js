@@ -2,17 +2,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import TypewriterTitle from "@/components/TypewriterTitle";
-import CaseStudyCard from "@/components/CaseStudyCard";
 import SkillsSection from "@/components/SkillsSection";
-import { caseStudies } from "@/lib/case-studies";
-import { skillToProjects } from "@/lib/skills";
+import { labTools } from "@/lib/lab-tools";
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeSection, setActiveSection] = useState(null);
   const [scrollY, setScrollY] = useState(0);
-  const [selectedSkill, setSelectedSkill] = useState(null);
-  const [filteredProjects, setFilteredProjects] = useState(caseStudies);
 
   useEffect(() => {
     setIsVisible(true);
@@ -24,22 +19,6 @@ export default function HomePage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (selectedSkill) {
-      const projectIds = skillToProjects[selectedSkill.id] || [];
-      const filtered = caseStudies.filter((project) =>
-        projectIds.includes(project.id)
-      );
-      setFilteredProjects(filtered);
-    } else {
-      setFilteredProjects(caseStudies);
-    }
-  }, [selectedSkill]);
-
-  const handleSkillFilter = (skill) => {
-    setSelectedSkill(skill);
-  };
 
   return (
     <div style={{ width: "100%", maxWidth: "100%", margin: 0, padding: 0 }}>
@@ -423,9 +402,7 @@ export default function HomePage() {
       </div>
 
       {/* Section Compétences */}
-      <SkillsSection onFilterChange={handleSkillFilter} />
-
-      {/* Section Réalisations */}
+      {/* Section LAB (aperçu) */}
       <section
         style={{
           width: "100%",
@@ -435,49 +412,51 @@ export default function HomePage() {
         }}
       >
         {/* Ligne de connexion verticale à gauche */}
-        <div className="homepage-vertical-line-fixed" style={{
-          position: "absolute",
-          left: "5%",
-          top: 0,
-          bottom: 0,
-          width: "2px",
-          background: "var(--line-blueprint)",
-          zIndex: 0
-        }} />
+        <div
+          style={{
+            position: "absolute",
+            left: "5%",
+            top: 0,
+            bottom: 0,
+            width: "2px",
+            background: "var(--line-blueprint)",
+            zIndex: 0
+          }}
+        />
 
-        <div className="homepage-section-padding" style={{ 
-          maxWidth: "1400px",
-          width: "100%",
-          margin: "0 auto",
-          padding: "120px 24px",
-          position: "relative",
-          zIndex: 1
-        }}>
-          {/* Titre de section - aligné avec la colonne droite de la section Hero */}
+        <div
+          style={{
+            maxWidth: "1400px",
+            width: "100%",
+            margin: "0 auto",
+            padding: "120px 24px",
+            position: "relative",
+            zIndex: 1
+          }}
+        >
           <div
             style={{
-              marginBottom: "80px",
+              marginBottom: "32px",
               paddingLeft: "48px",
               position: "relative"
             }}
           >
             {/* Point de connexion */}
             <div
-              className="homepage-connection-dot"
               style={{
                 position: "absolute",
                 left: "-48px",
                 top: "8px",
                 width: "12px",
                 height: "12px",
-          borderRadius: "50%",
-          background: "var(--accent)",
+                borderRadius: "50%",
+                background: "var(--accent)",
                 border: "3px solid var(--bg)",
-          zIndex: 2
+                zIndex: 2
               }}
             />
+
             <div
-              className="homepage-section-label"
               style={{
                 fontSize: 14,
                 color: "var(--accent)",
@@ -488,126 +467,163 @@ export default function HomePage() {
                 marginBottom: "16px"
               }}
             >
-              Réalisations
+              LAB
             </div>
-            <h2
-              className="homepage-section-title"
-              style={{
-                fontSize: 48,
-                fontWeight: 700,
-                margin: 0,
-                marginBottom: "16px",
-                color: "var(--fg)"
-              }}
-            >
-              Projets en détail
-            </h2>
-            <p
-              className="homepage-section-subtitle"
-              style={{
-                fontSize: 18,
-                lineHeight: 1.8,
-                color: "var(--fg-muted)",
-                whiteSpace: "nowrap"
-              }}
-            >
-              Découvrez comment j'ai transformé des défis complexes en solutions concrètes, en alliant vision stratégique et expertise technique.
-            </p>
-          </div>
 
-          {/* Filtre actif */}
-          {selectedSkill && (
             <div
               style={{
-                paddingLeft: "48px",
-                marginBottom: "32px",
                 display: "flex",
-                alignItems: "center",
-                gap: "16px"
+                alignItems: "flex-end",
+                justifyContent: "space-between",
+                gap: "16px",
+                flexWrap: "wrap"
               }}
             >
-              <div
-                style={{ 
-                  fontSize: 14,
-                  color: "var(--fg-muted)",
-                  fontFamily: "monospace"
-                }}
-              >
-                Filtre actif :
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  padding: "8px 16px",
-                  background: "var(--bg-secondary)",
-                  border: "2px solid var(--accent)",
-                  borderRadius: "4px"
-                }}
-              >
-                <span style={{ fontSize: "20px" }}>{selectedSkill.icon}</span>
-                <span
+              <div>
+                <h2
                   style={{
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    color: "var(--accent)"
+                    fontSize: 48,
+                    fontWeight: 700,
+                    margin: 0,
+                    marginBottom: "12px",
+                    color: "var(--fg)"
                   }}
                 >
-                  {selectedSkill.name}
-                </span>
-                <button
-                  onClick={() => handleSkillFilter(null)}
+                  Outils techniques
+                </h2>
+                <p
                   style={{
-                    marginLeft: "8px",
-                    background: "transparent",
-                    border: "none",
+                    fontSize: 18,
+                    lineHeight: 1.8,
                     color: "var(--fg-muted)",
-                    cursor: "pointer",
-                    fontSize: "18px",
-                    padding: "0",
-                    width: "20px",
-                    height: "20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
+                    margin: 0
+                  }}
+                >
+                  Accès direct aux outils (IA & LLM, Data Science) — utilisables avec vos propres clés.
+                </p>
+              </div>
+
+              <Link
+                href="/lab"
+                className="btn"
+                style={{
+                  border: "2px solid var(--accent)",
+                  background: "transparent",
+                  color: "var(--accent)"
+                }}
+              >
+                [ Voir tout le LAB ]
+              </Link>
+            </div>
+          </div>
+
+          {/* Grille d'outils (réutilise les styles responsive du LAB) */}
+          <div
+            className="lab-tool-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))",
+              gap: "24px",
+              paddingLeft: "48px"
+            }}
+          >
+            {labTools.map((tool) => (
+              <Link
+                key={tool.id}
+                href={`/lab/${tool.id}`}
+                className="lab-tool-card"
+                style={{
+                  textDecoration: "none",
+                  display: "block"
+                }}
+              >
+                <div
+                  style={{
+                    background: "var(--bg-secondary)",
+                    border: "2px solid var(--line-blueprint)",
+                    borderRadius: "12px",
+                    padding: "28px",
+                    height: "100%",
+                    transition: "all 0.3s ease",
+                    cursor: "pointer"
                   }}
                   onMouseEnter={(e) => {
-                    e.target.style.color = "var(--accent)";
+                    e.currentTarget.style.borderColor = tool.color;
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                    e.currentTarget.style.boxShadow = `0 8px 24px ${tool.color}20`;
                   }}
                   onMouseLeave={(e) => {
-                    e.target.style.color = "var(--fg-muted)";
+                    e.currentTarget.style.borderColor = "var(--line-blueprint)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow = "none";
                   }}
                 >
-                  ×
-                </button>
-              </div>
-              <div
-                style={{
-                  fontSize: 14,
-                  color: "var(--fg-muted)",
-                  fontFamily: "monospace"
-                }}
-              >
-                {filteredProjects.length} projet{filteredProjects.length > 1 ? "s" : ""} trouvé{filteredProjects.length > 1 ? "s" : ""}
-                </div>
-                </div>
-          )}
+                  <div
+                    style={{
+                      width: "44px",
+                      height: "44px",
+                      borderRadius: "8px",
+                      background: `${tool.color}20`,
+                      border: `2px solid ${tool.color}`,
+                      marginBottom: "14px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "22px",
+                        height: "22px",
+                        borderRadius: "4px",
+                        background: tool.color
+                      }}
+                    />
+                  </div>
 
-          {/* Cartes de cas d'usage - alignées avec la colonne droite */}
-          <div className="homepage-projects" style={{ paddingLeft: "48px" }}>
-            {filteredProjects && filteredProjects.length > 0 ? (
-              filteredProjects.map((project, index) => (
-                <CaseStudyCard key={project.id} project={project} index={index} />
-              ))
-            ) : (
-              <div style={{ padding: "40px", textAlign: "center", color: "var(--fg-muted)" }}>
-                Aucun projet trouvé pour cette compétence.
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      color: tool.color,
+                      fontWeight: 600,
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      marginBottom: "8px",
+                      fontFamily: "monospace"
+                    }}
+                  >
+                    {tool.category}
+                  </div>
+
+                  <h3
+                    style={{
+                      fontSize: "22px",
+                      fontWeight: 700,
+                      marginBottom: "10px",
+                      color: "var(--fg)"
+                    }}
+                  >
+                    {tool.name}
+                  </h3>
+
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      color: "var(--fg-muted)",
+                      lineHeight: 1.7,
+                      marginBottom: 0
+                    }}
+                  >
+                    {tool.description}
+                  </p>
                 </div>
-            )}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
+
+      <SkillsSection />
 
     </div>
   );

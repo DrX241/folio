@@ -277,7 +277,7 @@ export default function SkillsRadarChart({ skills, selectedSkill, onSkillClick }
         onMouseMove={handleMouseMove}
         onClick={handleClick}
         style={{
-          cursor: hoveredSkill ? "pointer" : "default",
+          cursor: hoveredSkill && onSkillClick ? "pointer" : "default",
           width: "100%",
           height: "100%",
           display: "block"
@@ -294,14 +294,14 @@ export default function SkillsRadarChart({ skills, selectedSkill, onSkillClick }
         return (
           <div
             key={skill.id}
-            onClick={() => onSkillClick && onSkillClick(skill)}
+            onClick={onSkillClick ? () => onSkillClick(skill) : undefined}
             style={{
               position: "absolute",
               left: `${(pos.x / 750) * 100}%`,
               top: `${(pos.y / 750) * 100}%`,
               transform: "translate(-50%, -50%)",
               zIndex: isActive ? 20 : 15,
-              cursor: "pointer",
+              cursor: onSkillClick ? "pointer" : "default",
               transition: "all 0.3s ease",
               transformOrigin: "center",
               scale: isActive ? "1.1" : "1"

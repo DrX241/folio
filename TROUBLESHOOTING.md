@@ -76,20 +76,20 @@ Le token doit :
 ### Exemple de .env.local correct
 
 ```env
-HUGGINGFACE_API_KEY=hf_AbCdEfGhIjKlMnOpQrStUvWxYz1234567890
+HUGGINGFACE_API_KEY=hf_VOTRE_TOKEN_ICI
 ```
 
 ### Exemple de .env.local incorrect
 
 ```env
 # ❌ MAUVAIS - Espaces
-HUGGINGFACE_API_KEY = hf_AbCdEfGhIjKlMnOpQrStUvWxYz1234567890
+HUGGINGFACE_API_KEY = hf_VOTRE_TOKEN_ICI
 
 # ❌ MAUVAIS - Guillemets
-HUGGINGFACE_API_KEY="hf_AbCdEfGhIjKlMnOpQrStUvWxYz1234567890"
+HUGGINGFACE_API_KEY="hf_VOTRE_TOKEN_ICI"
 
 # ❌ MAUVAIS - Sur plusieurs lignes
-HUGGINGFACE_API_KEY=hf_AbCdEfGhIjKlMnOpQrStUvWxYz
+HUGGINGFACE_API_KEY=hf_VOTRE_TOKEN_ICI
 1234567890
 ```
 
@@ -125,6 +125,10 @@ Si vous déployez sur Vercel, vous devez aussi configurer le token dans les vari
 ## 💡 Astuce
 
 Pour éviter que le token expire, créez un token avec une durée de validité longue ou sans expiration dans les paramètres Hugging Face.
+
+
+
+
 
 
 
