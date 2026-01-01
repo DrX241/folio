@@ -402,7 +402,7 @@ export default function HomePage() {
       </div>
 
       {/* Section Compétences */}
-      {/* Section LAB (aperçu) */}
+      {/* Section Marketplace (aperçu des réalisations techniques) */}
       <section
         style={{
           width: "100%",
@@ -429,7 +429,7 @@ export default function HomePage() {
             maxWidth: "1400px",
             width: "100%",
             margin: "0 auto",
-            padding: "120px 24px",
+            padding: "60px 24px",
             position: "relative",
             zIndex: 1
           }}
@@ -467,7 +467,7 @@ export default function HomePage() {
                 marginBottom: "16px"
               }}
             >
-              LAB
+              MARKETPLACE
             </div>
 
             <div
@@ -489,7 +489,7 @@ export default function HomePage() {
                     color: "var(--fg)"
                   }}
                 >
-                  Outils techniques
+                  Marketplace
                 </h2>
                 <p
                   style={{
@@ -499,7 +499,7 @@ export default function HomePage() {
                     margin: 0
                   }}
                 >
-                  Accès direct aux outils (IA & LLM, Data Science) — utilisables avec vos propres clés.
+                  Aperçu de mes réalisations techniques — outils IA & LLM, Data Science utilisables avec vos propres clés.
                 </p>
               </div>
 
