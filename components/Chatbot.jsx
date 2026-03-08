@@ -11,7 +11,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Bonjour et bienvenue. Je suis Eddy MISSONI, Expert IA - Projets & Solutions. Si vous etes recruteur, je peux vous presenter en quelques messages mon positionnement, mes resultats (gouvernance, pilotage, deploiement IA) et les cas d'usage les plus pertinents pour le poste." 
+      content: "Bonjour et bienvenue. Je suis Eddy MISSONI, Tech Lead IA. Si vous êtes recruteur, je peux vous présenter en quelques messages mon positionnement, mes résultats (gouvernance, pilotage, déploiement IA) et les cas d'usage les plus pertinents pour le poste." 
     }
   ]);
   const [input, setInput] = useState("");
