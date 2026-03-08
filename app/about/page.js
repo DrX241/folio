@@ -9,13 +9,20 @@ export default function AboutPage() {
         À propos
       </h1>
       <div className="prose">
-        <p style={{ fontSize: 18, lineHeight: 1.8, marginBottom: 32 }}>
-          Avec plus de six ans d'expérience dans la Data et l'IA, j'accompagne les entreprises dans leurs projets de
-          transformation numérique dans l'énergie, le luxe, le transport et la R&D. Convaincu que la réussite d'un projet
-          repose à <strong>80% sur le cadrage, l'écoute et la compréhension du besoin</strong> et à <strong>20% sur la technologie</strong>, 
-          je privilégie la clarté des besoins, la valeur d'usage et la qualité du delivery. Polyvalent, j'associe la vision 
-          du chef de projet à la maîtrise du Tech Lead pour concevoir des solutions fiables, performantes et alignées sur les enjeux métiers.
+        <p style={{ fontSize: 18, lineHeight: 1.8, marginBottom: 32, textAlign: "justify" }}>
+          Avec plus de six ans d'expérience dans la Data et l'IA, j'accélère le <strong>déploiement de solutions IA et IA générative</strong>, 
+          j'accompagne les équipes et priorise les initiatives en les alignant sur la stratégie métier. Je structure les <strong>feuilles de route IA</strong>, 
+          identifie les opportunités d'intégration et développe des <strong>cas d'usage concrets</strong> pour maximiser l'impact et favoriser l'adoption. 
+          Convaincu que la réussite repose à <strong>80% sur le cadrage et la compréhension du besoin</strong> et à <strong>20% sur la technologie</strong>, 
+          j'associe la vision du chef de projet à la maîtrise du Tech Lead et à une <strong>veille technologique</strong> continue pour anticiper les évolutions.
         </p>
+
+        <div className="hero-card" style={{ marginBottom: 32 }}>
+          <h2 style={{ marginTop: 0, marginBottom: 12, fontSize: 20 }}>Au quotidien</h2>
+          <p style={{ marginBottom: 0, color: "var(--fg-muted)", lineHeight: 1.7, textAlign: "justify" }}>
+            Au quotidien, je m'appuie sur une communication claire pour rendre accessibles les sujets techniques et produire des supports utiles à la prise de décision. Je travaille en collaboration étroite avec les équipes métiers et techniques afin d'aligner les objectifs, les priorités et les livrables. J'adopte une posture proactive pour anticiper les besoins, suivre les évolutions et adapter les choix en conséquence. J'exerce un leadership de terrain qui permet de mobiliser les équipes autour d'une vision commune et d'objectifs IA concrets. Enfin, je garde un esprit d'analyse exigeant pour formuler des recommandations solides, argumentées et actionnables.
+          </p>
+        </div>
 
         <div className="hero-card" style={{ marginBottom: 48 }}>
           <h2 style={{ marginTop: 0, marginBottom: 16, fontSize: 20 }}>CV & Documents</h2>
@@ -31,7 +38,7 @@ export default function AboutPage() {
           </Link>
         </div>
 
-        <h2>Coordonnées</h2>
+        <h2 id="coordonnees">Coordonnées</h2>
         <ul>
           <li><strong>Téléphone :</strong> <a href="tel:0765661994" style={{ color: "var(--accent)" }}>0765661994</a></li>
           <li><strong>Email :</strong> <a href="mailto:eddymissoni.pro@gmail.com" style={{ color: "var(--accent)" }}>eddymissoni.pro@gmail.com</a></li>
@@ -52,13 +59,7 @@ export default function AboutPage() {
           <span className="badge">Generative AI Advance Fine-Tuning for LLMs (IBM)</span>
         </div>
 
-        <h2>Langues</h2>
-        <ul>
-          <li><strong>Français</strong> – Langue maternelle</li>
-          <li><strong>Anglais</strong> – Intermédiaire</li>
-        </ul>
-
-        <h2>Expertises fonctionnelles</h2>
+        <h2>Expertises fonctionnelles et stratégiques</h2>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "16px" }}>
           <span className="badge">BI & Décisionnel</span>
           <span className="badge">Data & Intelligence Artificielle</span>
@@ -68,9 +69,15 @@ export default function AboutPage() {
           <span className="badge">Transformation digitale</span>
           <span className="badge">Architecture de données</span>
           <span className="badge">Gouvernance des données</span>
+          <span className="badge">Stratégie IA et feuille de route</span>
+          <span className="badge">Coordination IA transverse</span>
+          <span className="badge">Priorisation du portefeuille de cas d'usage</span>
+          <span className="badge">Gouvernance IA et conformité</span>
+          <span className="badge">Pilotage par la valeur métier</span>
+          <span className="badge">Communication exécutive et reporting</span>
         </div>
 
-        <h2>Expertises méthodologiques</h2>
+        <h2>Expertises méthodologiques et delivery IA</h2>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", marginTop: "16px" }}>
           <span className="badge">Étude amont & cadrage de besoin</span>
           <span className="badge">Homologation & Conception</span>
@@ -80,6 +87,12 @@ export default function AboutPage() {
           <span className="badge">Architecture technique & Design</span>
           <span className="badge">Gestion des risques & Qualité</span>
           <span className="badge">Pilotage de projet & Reporting</span>
+          <span className="badge">Cadrage de programmes IA générative</span>
+          <span className="badge">Industrialisation de POC IA</span>
+          <span className="badge">Qualification valeur, risque et faisabilité</span>
+          <span className="badge">Animation des comités métiers et IT</span>
+          <span className="badge">Veille technologique appliquée</span>
+          <span className="badge">Accompagnement des équipes projet IA</span>
         </div>
 
         <h2>Outils et technologies</h2>
@@ -135,13 +148,22 @@ export default function AboutPage() {
 
         <h2>Synthèse des expériences</h2>
         <ul>
-          <li><strong>mc2i</strong> – Tech Lead du Stream IA & Data Science – 10 mois (01/2025 – En cours)</li>
-          <li><strong>Acteur majeur de l'énergie</strong> – Chef de Projet & Expert en Intelligence Artificielle – 1 an et 6 mois (05/2024 – En cours)</li>
-          <li><strong>RATP</strong> – Chef de projet AMOA / AMOE Data & BI – 2 ans (05/2022 – 04/2024)</li>
-          <li><strong>COJOP</strong> – Product Owner – 6 mois (10/2021 – 03/2022)</li>
-          <li><strong>Acteur majeur de l'industrie du LUXE</strong> – Chef de projet SI – 1 an et 10 mois (01/2020 – 10/2021)</li>
-          <li><strong>Équipementier aéronautique mondial</strong> – Master Data & AI Manager – 1 an (01/2019 – 12/2019)</li>
-          <li><strong>VIF Software</strong> – Chef de projet ERP – 6 mois (06/2018 – 11/2018)</li>
+          <li><strong>NaTran (ex-GRTgaz)</strong> – Tech Lead IA — Stratégie, Architecture et Déploiement Data/IA – (09/2025 – En cours)</li>
+          <li><strong>TotalEnergies</strong> – Tech Lead IA Générative — Programmes R&D & Innovation – 1 an et 4 mois (05/2024 – 08/2025)</li>
+          <li><strong>mc2i</strong> – Tech Lead Data & IA — Transformation et Industrialisation – (01/2024 – En cours)</li>
+          <li><strong>RATP</strong> – Chef de projet Data & BI — Pilotage de la Performance – 2 ans (05/2022 – 04/2024)</li>
+          <li><strong>COJOP Paris 2024</strong> – Product Owner Digital — Plateforme nationale – 6 mois (10/2021 – 03/2022)</li>
+          <li><strong>LVMH</strong> – Chef de projet SI / BI — Solutions Décisionnelles Groupe – 1 an et 10 mois (01/2020 – 10/2021)</li>
+          <li><strong>Safran Aircraft Engines</strong> – Master Data & AI Manager — Data Engineering Industriel – 1 an (01/2019 – 12/2019)</li>
+        </ul>
+
+        <h2>Compétences (synthèse)</h2>
+        <ul>
+          <li><strong>AI Strategy & Leadership</strong> — Stratégie IA, feuilles de route, gouvernance IA, pilotage programmes</li>
+          <li><strong>AI Engineering & Architecture</strong> — LLM, RAG, plateformes GenAI, Azure OpenAI, Mistral, Claude</li>
+          <li><strong>Data & Analytics</strong> — Power BI, QlikView, Cognos, SQL, DAX, Python</li>
+          <li><strong>Automation & Integration</strong> — Orchestration Data/IA, workflows, Power Automate</li>
+          <li><strong>Delivery & Methods</strong> — Industrialisation IA, cadrage technologique, Agile, AMOA/AMOE</li>
         </ul>
       </div>
     </>

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
+import { debugError, debugLog } from "@/lib/logger";
 
 export async function POST(request) {
   try {
@@ -22,8 +23,8 @@ export async function POST(request) {
     const apiKey = bodyApiKey || process.env.HUGGINGFACE_API_KEY;
     if (provider === "huggingface" && !apiKey) {
       return NextResponse.json(
-        { error: "Token Hugging Face non configuré" },
-        { status: 500 }
+        { error: "Token Hugging Face non configuré. Entrez votre clé API dans la section Configuration avancée." },
+        { status: 400 }
       );
     }
 
@@ -68,7 +69,7 @@ Requête SQL:`;
       stop: ["\n\n", "Question:", "Q:"]
     };
 
-    console.log("Génération SQL - Question:", question, "- Provider:", provider);
+    debugLog("Génération SQL - Question:", question, "- Provider:", provider);
 
     let sqlQuery = "";
 
@@ -90,7 +91,7 @@ Requête SQL:`;
         } catch (e) {
           errorData = { message: "Erreur lors de la lecture de la réponse" };
         }
-        console.error("Hugging Face API Error:", {
+        debugError("Hugging Face API Error:", {
           status: response.status,
           statusText: response.statusText,
           error: errorData
@@ -109,8 +110,8 @@ Requête SQL:`;
         const responseText = await response.text();
         data = JSON.parse(responseText);
       } catch (parseError) {
-        console.error("Erreur de parsing JSON:", parseError);
-        console.error("Réponse brute reçue (premiers 500 caractères)");
+        debugError("Erreur de parsing JSON:", parseError);
+        debugError("Réponse brute reçue (premiers 500 caractères)");
         return NextResponse.json(
           { error: "Réponse API invalide (non-JSON). Vérifiez le token Hugging Face." },
           { status: 500 }
@@ -125,9 +126,9 @@ Requête SQL:`;
       } else if (data.generated_text) {
         sqlQuery = data.generated_text;
       } else {
-        console.error("Format de réponse inattendu:", JSON.stringify(data).substring(0, 500));
+        debugError("Format de réponse inattendu:", JSON.stringify(data).substring(0, 500));
         // En cas de format inattendu, utiliser le fallback
-        console.log("Utilisation du fallback pour générer la requête SQL");
+        debugLog("Utilisation du fallback pour générer la requête SQL");
         sqlQuery = generateDefaultSQL(question, schemaContext);
         return NextResponse.json({
           success: true,
@@ -156,7 +157,7 @@ Requête SQL:`;
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        console.error("Azure OpenAI Error:", {
+        debugError("Azure OpenAI Error:", {
           status: response.status,
           statusText: response.statusText,
           error: errorData
@@ -224,10 +225,10 @@ Requête SQL:`;
       );
     }
 
-    console.log("SQL brut généré:", sqlQuery);
+    debugLog("SQL brut généré:", sqlQuery);
 
     if (!sqlQuery || sqlQuery.trim().length === 0) {
-      console.error("SQL vide généré par le LLM, utilisation du fallback");
+      debugError("SQL vide généré par le LLM, utilisation du fallback");
       sqlQuery = generateDefaultSQL(question, schemaContext);
       return NextResponse.json({
         success: true,
@@ -239,7 +240,7 @@ Requête SQL:`;
     // Post-processing intelligent pour compléter les requêtes incomplètes
     sqlQuery = postProcessSQL(sqlQuery, question, schemaContext);
 
-    console.log("SQL après post-processing:", sqlQuery);
+    debugLog("SQL après post-processing:", sqlQuery);
 
     if (!sqlQuery || sqlQuery.trim().length === 0) {
       return NextResponse.json(
@@ -254,8 +255,8 @@ Requête SQL:`;
     });
 
   } catch (error) {
-    console.error("Text-to-SQL Error:", error);
-    console.error("Error stack:", error.stack);
+    debugError("Text-to-SQL Error:", error);
+    debugError("Error stack:", error?.stack);
     return NextResponse.json(
       { 
         error: "Erreur lors de la génération de la requête SQL",
@@ -272,11 +273,11 @@ Requête SQL:`;
 function postProcessSQL(sql, question, schemaContext) {
   // Si le SQL est vide, générer une requête par défaut
   if (!sql || typeof sql !== 'string' || sql.trim().length === 0) {
-    console.log("⚠️ SQL vide reçu du LLM, génération d'une requête par défaut");
+    debugLog("⚠️ SQL vide reçu du LLM, génération d'une requête par défaut");
     return generateDefaultSQL(question, schemaContext);
   }
 
-  console.log("📝 SQL brut reçu du LLM:", sql.substring(0, 150));
+  debugLog("📝 SQL brut reçu du LLM:", sql.substring(0, 150));
 
   // Nettoyer uniquement les balises markdown et espaces
   let cleaned = sql
@@ -296,20 +297,20 @@ function postProcessSQL(sql, question, schemaContext) {
 
   // Si aucun SELECT trouvé après nettoyage, fallback
   if (!cleaned.toUpperCase().startsWith('SELECT')) {
-    console.log("⚠️ Pas de SELECT trouvé après nettoyage, génération d'une requête par défaut");
+    debugLog("⚠️ Pas de SELECT trouvé après nettoyage, génération d'une requête par défaut");
     return generateDefaultSQL(question, schemaContext);
   }
 
   // Vérifier que FROM est présent
   if (!cleaned.toUpperCase().includes(' FROM ')) {
-    console.log("⚠️ Pas de FROM trouvé, génération d'une requête par défaut");
+    debugLog("⚠️ Pas de FROM trouvé, génération d'une requête par défaut");
     return generateDefaultSQL(question, schemaContext);
   }
 
   // Nettoyer les espaces multiples
   cleaned = cleaned.replace(/\s+/g, ' ').trim();
 
-  console.log("✅ SQL après post-processing:", cleaned);
+  debugLog("✅ SQL après post-processing:", cleaned);
 
   return cleaned;
 }
@@ -320,7 +321,7 @@ function postProcessSQL(sql, question, schemaContext) {
 function generateDefaultSQL(question, schemaContext) {
   const lowerQuestion = question.toLowerCase();
   
-  console.log("🔄 Génération SQL par défaut pour:", question);
+  debugLog("🔄 Génération SQL par défaut pour:", question);
   
   // 1. Questions de type "liste" (DISTINCT)
   if (lowerQuestion.includes('liste') || lowerQuestion.includes('toutes les') || lowerQuestion.includes('tous les')) {

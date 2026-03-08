@@ -2,6 +2,7 @@ import "./globals.css";
 import Script from "next/script";
 import Link from "next/link";
 import Chatbot from "@/components/Chatbot";
+import ScrollProgress from "@/components/ScrollProgress";
 export const metadata = {
   title: "Eddy MISSONI – Tech Lead | Data & IA",
   description: "Tech Lead — Data & IA. Je conçois et pilote des solutions IA (RAG, LLM), Data/BI et plateformes immersives.",
@@ -46,6 +47,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body>
+        <ScrollProgress />
         {plausibleDomain && (
           <Script
             defer
@@ -60,7 +62,7 @@ export default function RootLayout({ children }) {
               EMI — Tech Lead
             </Link>
             <nav className="navlinks" aria-label="Navigation principale">
-              <Link href="/about">À propos</Link>
+              <Link href="/about" id="nav-about">À propos</Link>
             </nav>
           </div>
         </div>

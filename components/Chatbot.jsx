@@ -2,12 +2,16 @@
 import { useState, useRef, useEffect } from "react";
 
 export default function Chatbot() {
+  const quickPrompts = [
+    "Pourquoi te choisir, toi, pour mon besoin d'expertise et de coordination IA ?"
+  ];
+
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Bonjour ! Je suis Eddy MISSONI, Tech Lead Data & IA. Je suis là pour répondre directement à tes questions sur mon parcours, mes expériences, mes compétences, mes projets ou mon approche professionnelle. N'hésite pas à me poser toutes tes questions !"
+      content: "Bonjour et bienvenue. Je suis Eddy MISSONI, Expert IA - Projets & Solutions. Si vous etes recruteur, je peux vous presenter en quelques messages mon positionnement, mes resultats (gouvernance, pilotage, deploiement IA) et les cas d'usage les plus pertinents pour le poste." 
     }
   ]);
   const [input, setInput] = useState("");
@@ -30,12 +34,10 @@ export default function Chatbot() {
     }
   }, [isOpen]);
 
-  const handleSend = async (e) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (userMessage) => {
+    if (!userMessage || !userMessage.trim() || isLoading) return;
 
-    const userMessage = input.trim();
-    setInput("");
+    const normalizedMessage = userMessage.trim();
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
 
@@ -54,7 +56,7 @@ export default function Chatbot() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: userMessage,
+          message: normalizedMessage,
           conversationHistory: conversationHistory
         }),
       });
@@ -83,8 +85,7 @@ export default function Chatbot() {
         if (data.retry) {
           // Réessayer après un délai si le modèle charge
           setTimeout(() => {
-            const retryEvent = new Event("submit");
-            handleSend(retryEvent);
+            sendMessage(normalizedMessage);
           }, 3000);
           setMessages((prev) => [
             ...prev,
@@ -124,6 +125,15 @@ export default function Chatbot() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSend = async (e) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+
+    const userMessage = input.trim();
+    setInput("");
+    await sendMessage(userMessage);
   };
 
   return (
@@ -375,6 +385,34 @@ export default function Chatbot() {
               background: "var(--bg)"
             }}
           >
+            <div
+              style={{
+                display: "flex",
+                gap: "8px",
+                flexWrap: "wrap",
+                marginBottom: "10px"
+              }}
+            >
+              {quickPrompts.map((prompt) => (
+                <button
+                  key={prompt}
+                  type="button"
+                  disabled={isLoading}
+                  onClick={() => sendMessage(prompt)}
+                  style={{
+                    border: "1px solid var(--line-blueprint)",
+                    background: "var(--bg-secondary)",
+                    color: "var(--fg-muted)",
+                    borderRadius: "999px",
+                    padding: "6px 10px",
+                    fontSize: "12px",
+                    cursor: isLoading ? "not-allowed" : "pointer"
+                  }}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
             <div style={{ display: "flex", gap: "8px" }}>
               <input
                 ref={inputRef}

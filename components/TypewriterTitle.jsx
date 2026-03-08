@@ -1,25 +1,25 @@
 "use client";
 import { useEffect, useState } from "react";
 
+const TITLES = ["Expert IA", "Chef de projet & Tech Lead", "Data & IA"];
+const DESCRIPTIONS = [
+  "Curieux et force de proposition",
+  "Orienté impact client",
+  "Passionné par l'IA et la Data",
+  "Facilitateur entre tech et métier",
+  "Promoteur de l'innovation utile",
+  "Attentif à la qualité et à la valeur"
+];
+
 export default function TypewriterTitle() {
   const [currentDescriptionIndex, setCurrentDescriptionIndex] = useState(0);
   const [displayedDescription, setDisplayedDescription] = useState("");
   const [descCharIndex, setDescCharIndex] = useState(0);
   const [isDescDeleting, setIsDescDeleting] = useState(false);
 
-  const titles = ["Chef de projet", "Tech Lead", "Data & IA"];
-  const descriptions = [
-    "Curieux et force de proposition",
-    "Orienté impact client",
-    "Passionné par l'IA et la Data",
-    "Facilitateur entre tech et métier",
-    "Promoteur de l'innovation utile",
-    "Attentif à la qualité et à la valeur"
-  ];
-
   // Animation de la description uniquement
   useEffect(() => {
-    const currentDesc = descriptions[currentDescriptionIndex];
+    const currentDesc = DESCRIPTIONS[currentDescriptionIndex];
     const typingSpeed = 80;
     const deletingSpeed = 40;
     const pauseAfterComplete = 3000;
@@ -48,7 +48,7 @@ export default function TypewriterTitle() {
       // Pause après avoir supprimé, puis passer à la description suivante
       timeout = setTimeout(() => {
         setIsDescDeleting(false);
-        setCurrentDescriptionIndex((currentDescriptionIndex + 1) % descriptions.length);
+        setCurrentDescriptionIndex((currentDescriptionIndex + 1) % DESCRIPTIONS.length);
         setDescCharIndex(0);
       }, pauseAfterDelete);
     }
@@ -66,11 +66,11 @@ export default function TypewriterTitle() {
         lineHeight: 1.1,
         color: "var(--fg)"
       }}>
-        {titles[0]}
+        {TITLES[0]}
         <br />
-        <span style={{ color: "var(--accent)" }}>{titles[1]}</span>
+        <span style={{ color: "var(--accent)" }}>{TITLES[1]}</span>
         <br />
-        {titles[2]}
+        {TITLES[2]}
       </h1>
       <div style={{
         fontSize: 20,
@@ -85,7 +85,7 @@ export default function TypewriterTitle() {
         <span style={{ marginRight: 8 }}>→</span>
         <span>
           {displayedDescription}
-          {!isDescDeleting && descCharIndex < descriptions[currentDescriptionIndex].length && (
+          {!isDescDeleting && descCharIndex < DESCRIPTIONS[currentDescriptionIndex].length && (
             <span style={{ opacity: 0.5 }}>|</span>
           )}
         </span>

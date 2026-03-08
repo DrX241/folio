@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { executeSelectQuery } from "@/lib/sqlite-db";
+import { debugError, debugLog } from "@/lib/logger";
 
 export async function POST(request) {
   try {
@@ -12,12 +13,12 @@ export async function POST(request) {
       );
     }
 
-    console.log("SQL reçu pour exécution:", sql.substring(0, 200));
+    debugLog("SQL reçu pour exécution:", sql.substring(0, 200));
 
     // Exécuter la requête SQL de manière sécurisée
     const results = executeSelectQuery(sql);
     
-    console.log("Résultats:", results.length, "lignes");
+    debugLog("Résultats:", results.length, "lignes");
 
     return NextResponse.json({
       success: true,
@@ -26,7 +27,7 @@ export async function POST(request) {
     });
 
   } catch (error) {
-    console.error("SQL Execution Error:", error);
+    debugError("SQL Execution Error:", error);
     return NextResponse.json(
       { 
         error: error.message || "Erreur lors de l'exécution de la requête SQL",

@@ -26,7 +26,7 @@ Vercel est la plateforme créée par les fondateurs de Next.js. C'est la solutio
 4. **Configurer les variables d'environnement**
    - Dans les paramètres du projet Vercel
    - Allez dans "Environment Variables"
-   - Ajoutez : `HUGGINGFACE_API_KEY` = votre token Hugging Face
+   - Ajoutez : `GOOGLE_GEMINI_API_KEY` = votre clé API Google Gemini (chatbot page d'accueil)
    - Ajoutez : `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` = votre domaine (si utilisé)
 
 5. **Déployer**
@@ -135,7 +135,7 @@ Pour plus de contrôle (DigitalOcean, AWS, OVH, etc.)
 ## 📋 Checklist avant déploiement
 
 ### Variables d'environnement à configurer :
-- [ ] `HUGGINGFACE_API_KEY` - Token Hugging Face pour le chatbot
+- [ ] `GOOGLE_GEMINI_API_KEY` - Clé API Google Gemini pour le chatbot (page d'accueil)
 - [ ] `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` - Domaine pour les analytics (optionnel)
 
 ### Fichiers à vérifier :

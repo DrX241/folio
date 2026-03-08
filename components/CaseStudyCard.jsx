@@ -32,6 +32,7 @@ export default function CaseStudyCard({ project, index }) {
   }, [project?.metrics]);
 
   useEffect(() => {
+    const cardElement = cardRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -43,13 +44,13 @@ export default function CaseStudyCard({ project, index }) {
       { threshold: 0.2 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    if (cardElement) {
+      observer.observe(cardElement);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (cardElement) {
+        observer.unobserve(cardElement);
       }
     };
   }, [animateCounters]);

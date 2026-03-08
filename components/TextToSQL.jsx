@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { debugError, debugLog } from "@/lib/logger";
 
 // Base de données d'exemple (simulée en mémoire)
 const sampleDatabase = {
@@ -163,7 +164,7 @@ export default function TextToSQL() {
         return;
       }
 
-      console.log("SQL reçu de l'API:", generatedSQL);
+      debugLog("SQL reçu de l'API:", generatedSQL);
 
       setSqlQuery(generatedSQL);
 
@@ -188,7 +189,7 @@ export default function TextToSQL() {
       setResults(null);
 
     } catch (error) {
-      console.error("Error:", error);
+      debugError("Error:", error);
       setError("Une erreur est survenue lors de la génération de la requête SQL");
     } finally {
       setIsLoading(false);
@@ -229,7 +230,7 @@ export default function TextToSQL() {
     // Nettoyer les espaces multiples mais garder la structure
     cleaned = cleaned.replace(/\s+/g, ' ').trim();
 
-    console.log("SQL nettoyé pour exécution:", cleaned);
+    debugLog("SQL nettoyé pour exécution:", cleaned);
 
     return cleaned;
   };
@@ -240,8 +241,8 @@ export default function TextToSQL() {
       return;
     }
 
-    console.log("=== EXÉCUTION SQL ===");
-    console.log("1. SQL original:", sql);
+    debugLog("=== EXÉCUTION SQL ===");
+    debugLog("1. SQL original:", sql);
 
     setIsExecuting(true);
     setError("");
@@ -251,7 +252,7 @@ export default function TextToSQL() {
       // Nettoyer la requête SQL avant envoi
       const cleanedSQL = cleanSQLForExecution(sql);
       
-      console.log("2. SQL nettoyé côté client:", cleanedSQL);
+      debugLog("2. SQL nettoyé côté client:", cleanedSQL);
       
       if (!cleanedSQL || !cleanedSQL.toUpperCase().startsWith('SELECT')) {
         setError("Requête SQL invalide ou incomplète");
@@ -260,7 +261,7 @@ export default function TextToSQL() {
       }
 
       // Exécuter la requête SQL sur la vraie base de données SQLite
-      console.log("3. Envoi à l'API:", cleanedSQL);
+      debugLog("3. Envoi à l'API:", cleanedSQL);
       
       const response = await fetch("/api/text-to-sql/execute", {
         method: "POST",
@@ -284,7 +285,7 @@ export default function TextToSQL() {
         setResults([]);
       }
     } catch (error) {
-      console.error("SQL Execution Error:", error);
+      debugError("SQL Execution Error:", error);
       setError("Erreur lors de l'exécution de la requête SQL : " + error.message);
       setResults(null);
     } finally {

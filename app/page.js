@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import TypewriterTitle from "@/components/TypewriterTitle";
 import SkillsSection from "@/components/SkillsSection";
+import WelcomeTour from "@/components/WelcomeTour";
 import { labTools } from "@/lib/lab-tools";
 
 export default function HomePage() {
@@ -22,8 +23,9 @@ export default function HomePage() {
 
   return (
     <div style={{ width: "100%", maxWidth: "100%", margin: 0, padding: 0 }}>
+      <WelcomeTour />
       {/* Hero Section - Full Width avec profil fixe et expériences défilantes */}
-      <section style={{ 
+      <section id="accueil" style={{ 
         width: "100%",
         minHeight: "200vh", // Hauteur suffisante pour permettre le scroll
         display: "flex",
@@ -120,9 +122,29 @@ export default function HomePage() {
                 fontStyle: "italic",
                 color: "var(--fg-muted)"
               }}>
-                Je construis des projets <strong style={{ color: "var(--accent)" }}>Data, IA et SI</strong> en commençant toujours par l'essentiel : <strong style={{ color: "var(--accent)" }}>comprendre, cadrer, simplifier</strong>.<br />
-                J'assure le <strong style={{ color: "var(--accent)" }}>"quoi"</strong> et le <strong style={{ color: "var(--accent)" }}>"quand"</strong> en tant que <strong style={{ color: "var(--accent)" }}>chef de projet</strong>, et le <strong style={{ color: "var(--accent)" }}>"comment bien"</strong> en tant que <strong style={{ color: "var(--accent)" }}>Tech Lead</strong>.
+                J'accélère le <strong style={{ color: "var(--accent)" }}>développement et le déploiement de solutions IA</strong> (dont IA générative) et j'accompagne les équipes sur la <strong style={{ color: "var(--accent)" }}>stratégie et les cas d'usage</strong>. Je structure les feuilles de route IA, priorise les initiatives et valorise les résultats auprès des métiers et de la direction.<br />
+                J'assure le <strong style={{ color: "var(--accent)" }}>"quoi"</strong> et le <strong style={{ color: "var(--accent)" }}>"quand"</strong> en tant que <strong style={{ color: "var(--accent)" }}>chef de projet</strong>, et le <strong style={{ color: "var(--accent)" }}>"comment bien"</strong> en tant que <strong style={{ color: "var(--accent)" }}>Tech Lead</strong>, en commençant toujours par <strong style={{ color: "var(--accent)" }}>comprendre, cadrer, simplifier</strong>.
               </p>
+            </div>
+            {/* Ce que j'apporte — aligné offre Expert IA */}
+            <div style={{
+              padding: "20px",
+              border: "1px solid var(--line-blueprint)",
+              background: "var(--bg)",
+              marginBottom: 24,
+              fontSize: 14,
+              lineHeight: 1.7,
+              color: "var(--fg-muted)"
+            }}>
+              <div style={{ fontSize: 11, color: "var(--accent)", fontWeight: 600, letterSpacing: "1px", fontFamily: "monospace", marginBottom: 12, textTransform: "uppercase" }}>
+                Ce que j'apporte
+              </div>
+              <ul style={{ margin: 0, paddingLeft: 20 }}>
+                <li>Stratégie IA & feuilles de route</li>
+                <li>Cas d'usage concrets & déploiement (dont IA générative)</li>
+                <li>Accompagnement d'équipes & priorisation des initiatives</li>
+                <li>Valorisation et communication des résultats (rapports, présentations)</li>
+              </ul>
             </div>
             <div className="actions homepage-actions" style={{ flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
               <Link className="btn primary" href="/about" style={{ fontSize: 16, padding: "16px 32px", width: "100%", textAlign: "center" }}>
@@ -150,7 +172,7 @@ export default function HomePage() {
               zIndex: 0
             }} />
 
-            <div className="homepage-experiences" style={{ paddingLeft: "48px", position: "relative", paddingTop: "0" }}>
+            <div id="experiences" className="homepage-experiences" style={{ paddingLeft: "48px", position: "relative", paddingTop: "0" }}>
               <div style={{ 
                 fontSize: 14, 
                 color: "var(--accent)", 
@@ -171,7 +193,7 @@ export default function HomePage() {
                 Expériences clés
               </div>
               
-              {/* Expérience 1 */}
+              {/* Expérience 1 - NaTran */}
               <div style={{ marginBottom: 80, position: "relative" }}>
                 <div className="homepage-connection-dot" style={{
                   position: "absolute",
@@ -185,64 +207,73 @@ export default function HomePage() {
                   zIndex: 2
                 }} />
                 <div className="homepage-exp-date" style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
-                  01/2025 — En cours
+                  Sept 2025 — Présent
                 </div>
                 <h3 className="homepage-exp-title" style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
-                  Tech Lead — Stream IA & Data Science
+                  Expert & Tech Lead IA — Stratégie, architecture et déploiement
                 </h3>
                 <div className="homepage-exp-company" style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  Cabinet de conseil
+                  NaTran (ex-GRTgaz) · Mission mc2i
                 </div>
-                <p className="homepage-exp-description" style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 16 }}>
-                  J'accompagne la structuration et le pilotage de l'ensemble des projets IA du cabinet, de l'idée à l'industrialisation. 
-                  Je coordonne la communauté Data & IA, développe des solutions d'IA générative comme le RAG multi-modèles, 
-                  et j'ai créé le média IA'ctualités pour diffuser la culture IA en interne et auprès des écoles partenaires.
+                <p className="homepage-exp-description" style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
+                  Programme de transformation des processus métiers d'un acteur majeur des infrastructures énergétiques, avec intégration de l'IA dans les chaînes de décision, d'exploitation et de performance opérationnelle.
                 </p>
+                <div style={{ fontSize: 12, fontWeight: 600, color: "var(--accent)", marginBottom: 8 }}>Réalisations :</div>
+                <ul style={{ fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)", margin: "0 0 16px 20px", paddingLeft: 8 }}>
+                  <li>Pilotage transverse des initiatives IA à l'échelle groupe</li>
+                  <li>Définition de la stratégie IA et élaboration de feuilles de route pluriannuelles</li>
+                  <li>Priorisation des cas d'usage à fort impact opérationnel et industriel</li>
+                  <li>Mise en place de standards technologiques et gouvernance IA (risques, conformité, sécurité)</li>
+                </ul>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  <span className="badge">Tech Lead</span>
+                  <span className="badge">Tech Lead IA</span>
+                  <span className="badge">Stratégie IA</span>
+                  <span className="badge">Gouvernance IA</span>
+                  <span className="badge">Énergie</span>
+                </div>
+              </div>
+
+              {/* Expérience 2 - TotalEnergies */}
+              <div style={{ marginBottom: 80, position: "relative" }}>
+                <div style={{
+                  position: "absolute",
+                  left: "-48px",
+                  top: "8px",
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  background: "var(--accent)",
+                  border: "3px solid var(--bg)",
+                  zIndex: 2
+                }} />
+                <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
+                  Avr 2024 — Août 2025
+                </div>
+                <h3 style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
+                  Tech Lead IA générative — Programme R&D et innovation
+                </h3>
+                <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
+                  TotalEnergies · Mission mc2i
+                </div>
+                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
+                  Accélération de la recherche scientifique par l'intégration de l'IA générative dans les processus d'idéation, d'analyse et d'exploration technologique des équipes R&D.
+                </p>
+                <div style={{ fontSize: 12, fontWeight: 600, color: "var(--accent)", marginBottom: 8 }}>Réalisations :</div>
+                <ul style={{ fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)", margin: "0 0 16px 20px", paddingLeft: 8 }}>
+                  <li>Pilotage d'un portefeuille de 120+ projets IA en environnement R&D</li>
+                  <li>Coordination d'équipes expertes Data, IA et chercheurs</li>
+                  <li>Intégration de l'IA générative dans les processus d'idéation scientifique</li>
+                  <li>Conception de plateformes LLM internes et architectures RAG sécurisées</li>
+                </ul>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   <span className="badge">IA Générative</span>
                   <span className="badge">RAG</span>
-                  <span className="badge">Formation</span>
-                </div>
-              </div>
-
-              {/* Expérience 2 */}
-              <div style={{ marginBottom: 80, position: "relative" }}>
-                <div style={{
-                  position: "absolute",
-                  left: "-48px",
-                  top: "8px",
-                  width: "12px",
-                  height: "12px",
-                  borderRadius: "50%",
-                  background: "var(--accent)",
-                  border: "3px solid var(--bg)",
-                  zIndex: 2
-                }} />
-                <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
-                  05/2024 — En cours
-                </div>
-                <h3 style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
-                  Chef de Projet & Expert IA — AI4R&T
-                </h3>
-                <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  Acteur majeur de l'énergie
-                </div>
-                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 16 }}>
-                  Je pilote plus de quarante cas d'usage d'intelligence artificielle au sein de la R&D, 
-                  en concevant une plateforme technique d'idéation fondée sur des architectures RAG et l'intégration de modèles comme GPT-4, Mistral, Claude ou Gemini. 
-                  Cette plateforme permet aux chercheurs de trouver de nouvelles solutions industrielles à partir de problèmes techniques complexes. 
-                  J'assure la cohérence technique, la sécurité, la conformité, l'acculturation à l'IA et la formation des chercheurs à ces nouveaux outils.
-                </p>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  <span className="badge">RAG</span>
-                  <span className="badge">Multi-modèles</span>
+                  <span className="badge">LLM</span>
                   <span className="badge">R&D</span>
-                  <span className="badge">Propriété Intellectuelle</span>
                 </div>
               </div>
 
-              {/* Expérience 3 */}
+              {/* Expérience 3 - mc2i */}
               <div style={{ marginBottom: 80, position: "relative" }}>
                 <div style={{
                   position: "absolute",
@@ -256,28 +287,73 @@ export default function HomePage() {
                   zIndex: 2
                 }} />
                 <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
-                  05/2022 — 04/2024
+                  Oct 2021 — Présent
                 </div>
                 <h3 style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
-                  Chef de projet AMOA/AMOE Data & BI
+                  Manager & Tech Lead Data & IA — Transformation et industrialisation
                 </h3>
                 <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  Acteur majeur du transport
+                  mc2i
                 </div>
-                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 16 }}>
-                  J'ai encadré le suivi de centaines d'indicateurs économiques et contractuels avec Île-de-France Mobilités, 
-                  tout en développant des tableaux de bord pour le pilotage des coûts et de la performance. 
-                  J'ai contribué à automatiser les traitements de données et à maintenir l'infocentre économique utilisé par les instances dirigeantes.
+                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
+                  Conseil auprès de grands groupes dans leurs programmes de transformation Data & IA visant l'industrialisation des usages, l'alignement stratégique métiers/IT et le passage à l'échelle des solutions d'intelligence artificielle.
                 </p>
+                <div style={{ fontSize: 12, fontWeight: 600, color: "var(--accent)", marginBottom: 8 }}>Réalisations :</div>
+                <ul style={{ fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)", margin: "0 0 16px 20px", paddingLeft: 8 }}>
+                  <li>Pilotage de programmes Data & IA multi-clients et coordination métiers / IT</li>
+                  <li>Structuration de stratégies IA et priorisation de portefeuilles de cas d'usage</li>
+                  <li>Cadrage d'architectures Data & IA et mise en production de solutions industrialisées</li>
+                  <li>Déploiement de plateformes GenAI, moteurs RAG et assistants métiers basés sur LLM</li>
+                </ul>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  <span className="badge">Manager</span>
+                  <span className="badge">Tech Lead</span>
+                  <span className="badge">GenAI</span>
+                  <span className="badge">Consulting</span>
+                </div>
+              </div>
+
+              {/* Expérience 4 - RATP */}
+              <div style={{ marginBottom: 80, position: "relative" }}>
+                <div style={{
+                  position: "absolute",
+                  left: "-48px",
+                  top: "8px",
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  background: "var(--accent)",
+                  border: "3px solid var(--bg)",
+                  zIndex: 2
+                }} />
+                <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
+                  Mai 2022 — Avr 2024
+                </div>
+                <h3 style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
+                  Chef de projet MOE Data & BI — Pilotage de la performance contractuelle
+                </h3>
+                <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
+                  RATP · Mission mc2i
+                </div>
+                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
+                  Pilotage des dispositifs Data soutenant le suivi de la performance financière et opérationnelle du contrat RATP–IDFM, dans un environnement multi-SI complexe.
+                </p>
+                <div style={{ fontSize: 12, fontWeight: 600, color: "var(--accent)", marginBottom: 8 }}>Réalisations :</div>
+                <ul style={{ fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)", margin: "0 0 16px 20px", paddingLeft: 8 }}>
+                  <li>Gouvernance Data et pilotage de 300+ indicateurs stratégiques</li>
+                  <li>Conception de dispositifs décisionnels pour pilotage financier et opérationnel</li>
+                  <li>Structuration et fiabilisation de flux de données multi-SI complexes</li>
+                  <li>Appui analytique aux directions métiers et instances de pilotage</li>
+                </ul>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   <span className="badge">BI</span>
                   <span className="badge">Power BI</span>
-                  <span className="badge">Performance</span>
-                  <span className="badge">MCO</span>
+                  <span className="badge">Gouvernance Data</span>
+                  <span className="badge">MOE</span>
                 </div>
               </div>
 
-              {/* Expérience 4 - LVMH */}
+              {/* Expérience 5 - COJOP */}
               <div style={{ marginBottom: 80, position: "relative" }}>
                 <div style={{
                   position: "absolute",
@@ -291,28 +367,73 @@ export default function HomePage() {
                   zIndex: 2
                 }} />
                 <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
-                  01/2020 — 10/2021
+                  Oct 2021 — Mars 2022
                 </div>
                 <h3 style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
-                  Chef de projet SI
+                  Product Owner digital — Plateforme nationale JO Paris 2024
                 </h3>
                 <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  Acteur majeur du Luxe
+                  COJOP Paris 2024 · Mission mc2i
                 </div>
-                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 16 }}>
-                  J'ai conduit plusieurs projets décisionnels dans les domaines RH et Juridique, 
-                  en mettant en place des tableaux de bord clairs et utiles pour le suivi des effectifs et des coûts de formation. 
-                  J'ai également supervisé la qualité des données et coordonné les échanges entre les équipes métiers, techniques et la DSI.
+                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
+                  Conception et pilotage d'une plateforme digitale nationale à forte exposition publique, au service de l'expérience utilisateur et du rayonnement des Jeux Olympiques.
                 </p>
+                <div style={{ fontSize: 12, fontWeight: 600, color: "var(--accent)", marginBottom: 8 }}>Réalisations :</div>
+                <ul style={{ fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)", margin: "0 0 16px 20px", paddingLeft: 8 }}>
+                  <li>Pilotage produit d'une plateforme digitale nationale</li>
+                  <li>Définition des besoins métiers et conception fonctionnelle des services numériques</li>
+                  <li>Pilotage de la roadmap et coordination équipes UX/UI & techniques</li>
+                  <li>Supervision des tests et amélioration continue de l'expérience utilisateur</li>
+                </ul>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  <span className="badge">Product Owner</span>
+                  <span className="badge">UX/UI</span>
+                  <span className="badge">Roadmap</span>
+                  <span className="badge">JO Paris 2024</span>
+                </div>
+              </div>
+
+              {/* Expérience 6 - LVMH */}
+              <div style={{ marginBottom: 80, position: "relative" }}>
+                <div style={{
+                  position: "absolute",
+                  left: "-48px",
+                  top: "8px",
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "50%",
+                  background: "var(--accent)",
+                  border: "3px solid var(--bg)",
+                  zIndex: 2
+                }} />
+                <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
+                  Avr 2020 — Sept 2021
+                </div>
+                <h3 style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
+                  IT Project Manager — Solutions décisionnelles Groupe
+                </h3>
+                <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
+                  LVMH
+                </div>
+                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
+                  Pilotage de solutions décisionnelles stratégiques au sein de la DSI Groupe pour soutenir les directions RH et Juridique dans leurs enjeux de pilotage et de conformité.
+                </p>
+                <div style={{ fontSize: 12, fontWeight: 600, color: "var(--accent)", marginBottom: 8 }}>Réalisations :</div>
+                <ul style={{ fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)", margin: "0 0 16px 20px", paddingLeft: 8 }}>
+                  <li>Pilotage de projets décisionnels stratégiques RH et Juridique</li>
+                  <li>Conception de solutions BI pour le pilotage des effectifs et de la performance</li>
+                  <li>Structuration de reportings exécutifs et fiabilisation des données</li>
+                  <li>Intégration de briques analytiques au système d'information Groupe</li>
+                </ul>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  <span className="badge">IT Project Manager</span>
                   <span className="badge">BI</span>
-                  <span className="badge">RH</span>
-                  <span className="badge">Juridique</span>
-                  <span className="badge">ETL</span>
+                  <span className="badge">DSI Groupe</span>
+                  <span className="badge">Luxe</span>
                 </div>
               </div>
 
-              {/* Expérience 5 - Safran */}
+              {/* Expérience 7 - Safran */}
               <div style={{ marginBottom: 80, position: "relative" }}>
                 <div style={{
                   position: "absolute",
@@ -326,23 +447,28 @@ export default function HomePage() {
                   zIndex: 2
                 }} />
                 <div style={{ fontSize: 11, color: "var(--fg-muted)", fontFamily: "monospace", marginBottom: 8 }}>
-                  01/2019 — 12/2019
+                  Fév 2018 — Mars 2020
                 </div>
                 <h3 style={{ marginTop: 0, marginBottom: 8, fontSize: 24, fontWeight: 700 }}>
-                  Master Data Manager / Data Science
+                  Master Data & AI Manager — Data engineering industriel
                 </h3>
                 <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  Acteur majeur de l'aéronautique
+                  Safran Aircraft Engines
                 </div>
-                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 16 }}>
-                  J'ai participé à la mise en place d'algorithmes d'analyse prédictive pour la maintenance des moteurs d'avion 
-                  et à la fiabilisation des données de production. Mon rôle consistait à structurer les bases de données, 
-                  améliorer la qualité des informations critiques et concevoir des indicateurs de performance destinés aux ateliers de réparation.
+                <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
+                  Structuration des fondations Data industrielles pour permettre les futurs usages IA et la maintenance prédictive sur des systèmes critiques aéronautiques.
                 </p>
+                <div style={{ fontSize: 12, fontWeight: 600, color: "var(--accent)", marginBottom: 8 }}>Réalisations :</div>
+                <ul style={{ fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)", margin: "0 0 16px 20px", paddingLeft: 8 }}>
+                  <li>Structuration des fondations data pour usages IA industriels</li>
+                  <li>Préparation et fiabilisation de données techniques à grande échelle</li>
+                  <li>Développement d'analyses prédictives pour maintenance moteurs</li>
+                  <li>Structuration d'indicateurs de performance industriels</li>
+                </ul>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  <span className="badge">Data Science</span>
+                  <span className="badge">Data Engineering</span>
                   <span className="badge">ML</span>
-                  <span className="badge">Maintenance</span>
+                  <span className="badge">Maintenance prédictive</span>
                   <span className="badge">Aéronautique</span>
                 </div>
               </div>
@@ -404,6 +530,7 @@ export default function HomePage() {
       {/* Section Compétences */}
       {/* Section Marketplace (aperçu des réalisations techniques) */}
       <section
+        id="realisations"
         style={{
           width: "100%",
           background: "var(--bg)",
@@ -467,7 +594,7 @@ export default function HomePage() {
                 marginBottom: "16px"
               }}
             >
-              MARKETPLACE
+              CAS D'USAGE IA
             </div>
 
             <div
@@ -489,7 +616,7 @@ export default function HomePage() {
                     color: "var(--fg)"
                   }}
                 >
-                  Marketplace
+                  Cas d'usage IA & solutions déployables
                 </h2>
                 <p
                   style={{
@@ -499,7 +626,7 @@ export default function HomePage() {
                     margin: 0
                   }}
                 >
-                  Aperçu de mes réalisations techniques — outils IA & LLM, Data Science utilisables avec vos propres clés.
+                  Démonstrateurs : développement, mise en œuvre et déploiement de solutions IA (dont génératives), utilisables avec vos propres clés.
                 </p>
               </div>
 
@@ -611,11 +738,24 @@ export default function HomePage() {
                       fontSize: "14px",
                       color: "var(--fg-muted)",
                       lineHeight: 1.7,
-                      marginBottom: 0
+                      marginBottom: tool.impact ? "10px" : 0
                     }}
                   >
                     {tool.description}
                   </p>
+                  {tool.impact && (
+                    <p
+                      style={{
+                        fontSize: "13px",
+                        color: "var(--accent)",
+                        lineHeight: 1.5,
+                        margin: 0,
+                        fontStyle: "italic"
+                      }}
+                    >
+                      → {tool.impact}
+                    </p>
+                  )}
                 </div>
               </Link>
             ))}
@@ -623,7 +763,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <SkillsSection />
+      <div id="competences">
+        <SkillsSection />
+      </div>
 
     </div>
   );

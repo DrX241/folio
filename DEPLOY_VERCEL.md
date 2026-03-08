@@ -44,8 +44,8 @@ Vercel détectera automatiquement Next.js. Vérifiez que :
 1. Dans la section **"Environment Variables"**, ajoutez :
    
    **Variable 1 :**
-   - Name : `HUGGINGFACE_API_KEY`
-   - Value : `votre_token_huggingface` (⚠️ Créez un nouveau token sur https://huggingface.co/settings/tokens - NE JAMAIS commiter le token dans le code !)
+   - Name : `GOOGLE_GEMINI_API_KEY`
+   - Value : votre clé API Google Gemini (⚠️ Créez-la sur https://aistudio.google.com/apikey - NE JAMAIS commiter la clé dans le code !)
    - Environments : ✅ Production, ✅ Preview, ✅ Development
 
    **Variable 2 :**
@@ -74,7 +74,7 @@ Vercel détectera automatiquement Next.js. Vérifiez que :
 
 1. Cliquez sur l'URL fournie
 2. Votre portfolio devrait être en ligne !
-3. Testez le chatbot pour vérifier que `HUGGINGFACE_API_KEY` fonctionne
+3. Testez le chatbot pour vérifier que `GOOGLE_GEMINI_API_KEY` fonctionne
 
 ---
 
@@ -191,7 +191,7 @@ Une fois configuré, chaque push sur GitHub déclenchera automatiquement un nouv
 - Vérifiez que toutes les dépendances sont dans `package.json`
 
 ### Le chatbot ne fonctionne pas :
-- Vérifiez que `HUGGINGFACE_API_KEY` est bien configurée dans Vercel
+- Vérifiez que `GOOGLE_GEMINI_API_KEY` est bien configurée dans Vercel
 - Vérifiez que la variable est disponible pour "Production"
 - Redéployez après avoir ajouté la variable
 
@@ -206,7 +206,7 @@ Une fois configuré, chaque push sur GitHub déclenchera automatiquement un nouv
 - [ ] Code poussé sur GitHub (compte `DrX241`)
 - [ ] Compte Vercel créé et connecté à GitHub
 - [ ] Projet importé dans Vercel
-- [ ] Variable `HUGGINGFACE_API_KEY` configurée
+- [ ] Variable `GOOGLE_GEMINI_API_KEY` configurée
 - [ ] Déploiement réussi
 - [ ] Site accessible sur l'URL Vercel
 - [ ] Chatbot fonctionnel

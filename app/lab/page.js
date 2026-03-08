@@ -48,7 +48,7 @@ export default function LabPage() {
               color: "var(--fg-muted)",
               margin: 0
             }}>
-              Découvrez mes outils techniques développés pour démontrer mon expertise
+              Ces démonstrateurs illustrent le développement, la mise en œuvre et l'expérimentation de solutions IA (IA générative, multi-modèles, technologies émergentes).
             </p>
           </div>
           <Link
@@ -195,10 +195,21 @@ export default function LabPage() {
                   fontSize: "14px",
                   color: "var(--fg-muted)",
                   lineHeight: 1.7,
-                  marginBottom: "24px"
+                  marginBottom: tool.impact ? "10px" : "24px"
                 }}>
                   {tool.description}
                 </p>
+                {tool.impact && (
+                  <p style={{
+                    fontSize: "13px",
+                    color: "var(--accent)",
+                    lineHeight: 1.5,
+                    marginBottom: "24px",
+                    fontStyle: "italic"
+                  }}>
+                    → {tool.impact}
+                  </p>
+                )}
                 <div style={{
                   display: "flex",
                   alignItems: "center",
