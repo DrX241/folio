@@ -7,6 +7,7 @@ import TestDataGenerator from "@/components/TestDataGenerator";
 import PromptEvaluator from "@/components/PromptEvaluator";
 import LearningPathPlanner from "@/components/LearningPathPlanner";
 import DataAnonymizer from "@/components/DataAnonymizer";
+import EscapeGame3D from "@/components/EscapeGame3D";
 import Link from "next/link";
 
 const toolComponents = {
@@ -16,7 +17,8 @@ const toolComponents = {
   "test-data-generator": TestDataGenerator,
   "prompt-engineering-challenge": PromptEvaluator,
   "learning-path-planner": LearningPathPlanner,
-  "data-anonymizer": DataAnonymizer
+  "data-anonymizer": DataAnonymizer,
+  "escape-game-3d": EscapeGame3D
 };
 
 const toolNames = {
@@ -26,13 +28,15 @@ const toolNames = {
   "test-data-generator": "Générateur de jeux de test",
   "prompt-engineering-challenge": "Évaluateur de Prompt",
   "learning-path-planner": "Planificateur de Formation Data/IA",
-  "data-anonymizer": "Anonymiseur de Données RGPD"
+  "data-anonymizer": "Anonymiseur de Données RGPD",
+  "escape-game-3d": "Escape Game 3D - Salle d'investigation"
 };
 
 export default function ToolPage() {
   const params = useParams();
   const toolId = params.tool;
   const ToolComponent = toolComponents[toolId];
+  const isImmersiveTool = toolId === "escape-game-3d";
 
   if (!ToolComponent) {
     return (
@@ -56,6 +60,20 @@ export default function ToolPage() {
     );
   }
 
+  if (isImmersiveTool) {
+    return (
+      <div style={{
+        width: "100%",
+        minHeight: "100vh",
+        background: "#02030a"
+      }}>
+        <div style={{ width: "100%", minHeight: "100vh" }}>
+          <ToolComponent />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{
       width: "100%",
@@ -66,17 +84,18 @@ export default function ToolPage() {
       <div className="lab-tool-header" style={{
         background: "var(--bg-secondary)",
         borderBottom: "2px solid var(--line-blueprint)",
-        padding: "24px",
+        padding: isImmersiveTool ? "16px 20px" : "24px",
         position: "sticky",
         top: 0,
         zIndex: 100
       }}>
         <div className="lab-tool-header-nav" style={{
-          maxWidth: "1400px",
+          maxWidth: isImmersiveTool ? "100%" : "1400px",
           margin: "0 auto",
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center"
+          alignItems: "center",
+          gap: "16px"
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <Link
@@ -146,9 +165,9 @@ export default function ToolPage() {
 
       {/* Contenu de l'outil */}
       <div className="lab-tool-content" style={{
-        maxWidth: "1400px",
+        maxWidth: isImmersiveTool ? "100%" : "1400px",
         margin: "0 auto",
-        padding: "48px 24px"
+        padding: isImmersiveTool ? "8px 8px 0" : "48px 24px"
       }}>
         <ToolComponent />
       </div>

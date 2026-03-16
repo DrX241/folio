@@ -24,6 +24,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# local verification logs
+build.log
+build_*.log
+dev.log
+dev_*.log
+lint_*.log
+
 # local env files
 .env*.local
 .env
