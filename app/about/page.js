@@ -148,13 +148,13 @@ export default function AboutPage() {
 
         <h2>Synthèse des expériences</h2>
         <ul>
-          <li><strong>NaTran (ex-GRTgaz)</strong> – Tech Lead IA — Stratégie, Architecture et Déploiement Data/IA – (09/2025 – En cours)</li>
-          <li><strong>TotalEnergies</strong> – Tech Lead IA Générative — Programmes R&D & Innovation – 1 an et 4 mois (05/2024 – 08/2025)</li>
-          <li><strong>mc2i</strong> – Tech Lead Data & IA — Transformation et Industrialisation – (01/2024 – En cours)</li>
-          <li><strong>RATP</strong> – Chef de projet Data & BI — Pilotage de la Performance – 2 ans (05/2022 – 04/2024)</li>
-          <li><strong>COJOP Paris 2024</strong> – Product Owner Digital — Plateforme nationale – 6 mois (10/2021 – 03/2022)</li>
-          <li><strong>LVMH</strong> – Chef de projet SI / BI — Solutions Décisionnelles Groupe – 1 an et 10 mois (01/2020 – 10/2021)</li>
-          <li><strong>Safran Aircraft Engines</strong> – Master Data & AI Manager — Data Engineering Industriel – 1 an (01/2019 – 12/2019)</li>
+          <li><strong>Tech Lead Data & IA</strong> – Stratégie, Architecture et Déploiement Data/IA – (09/2025 – En cours)</li>
+          <li><strong>Tech Lead Data & IA</strong> – Programmes R&D & Innovation – 1 an et 4 mois (05/2024 – 08/2025)</li>
+          <li><strong>Tech Lead Data & IA</strong> – Transformation et Industrialisation – (01/2024 – En cours)</li>
+          <li><strong>Tech Lead Data & IA</strong> – Pilotage de la Performance – 2 ans (05/2022 – 04/2024)</li>
+          <li><strong>Tech Lead Data & IA</strong> – Product Owner Digital — Plateforme nationale – 6 mois (10/2021 – 03/2022)</li>
+          <li><strong>Tech Lead Data & IA</strong> – Solutions Décisionnelles Groupe – 1 an et 10 mois (01/2020 – 10/2021)</li>
+          <li><strong>Tech Lead Data & IA</strong> – Data Engineering Industriel – 1 an (01/2019 – 12/2019)</li>
         </ul>
 
         <h2>Compétences (synthèse)</h2>

@@ -1,24 +1,23 @@
 "use client";
 import { useParams } from "next/navigation";
-import TextToSQL from "@/components/TextToSQL";
-import AnomalyDetector from "@/components/AnomalyDetector";
-import RAGMultiProviderChat from "@/components/RAGMultiProviderChat";
-import TestDataGenerator from "@/components/TestDataGenerator";
-import PromptEvaluator from "@/components/PromptEvaluator";
-import LearningPathPlanner from "@/components/LearningPathPlanner";
-import DataAnonymizer from "@/components/DataAnonymizer";
-import EscapeGame3D from "@/components/EscapeGame3D";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
+const ToolLoader = () => (
+  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "60vh", color: "var(--fg-muted)", fontFamily: "monospace", fontSize: "14px" }}>
+    Chargement de l&apos;outil...
+  </div>
+);
+
 const toolComponents = {
-  "text-to-sql": TextToSQL,
-  "anomaly-detector": AnomalyDetector,
-  "rag-multi-chat": RAGMultiProviderChat,
-  "test-data-generator": TestDataGenerator,
-  "prompt-engineering-challenge": PromptEvaluator,
-  "learning-path-planner": LearningPathPlanner,
-  "data-anonymizer": DataAnonymizer,
-  "escape-game-3d": EscapeGame3D
+  "text-to-sql": dynamic(() => import("@/components/TextToSQL"), { ssr: false, loading: ToolLoader }),
+  "anomaly-detector": dynamic(() => import("@/components/AnomalyDetector"), { ssr: false, loading: ToolLoader }),
+  "rag-multi-chat": dynamic(() => import("@/components/RAGMultiProviderChat"), { ssr: false, loading: ToolLoader }),
+  "test-data-generator": dynamic(() => import("@/components/TestDataGenerator"), { ssr: false, loading: ToolLoader }),
+  "prompt-engineering-challenge": dynamic(() => import("@/components/PromptEvaluator"), { ssr: false, loading: ToolLoader }),
+  "learning-path-planner": dynamic(() => import("@/components/LearningPathPlanner"), { ssr: false, loading: ToolLoader }),
+  "data-anonymizer": dynamic(() => import("@/components/DataAnonymizer"), { ssr: false, loading: ToolLoader }),
+  "escape-game-3d": dynamic(() => import("@/components/EscapeGame3D"), { ssr: false, loading: ToolLoader }),
 };
 
 const toolNames = {

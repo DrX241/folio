@@ -3,22 +3,68 @@ import { portfolioContext } from "@/lib/portfolio-context";
 
 const GEMINI_API_BASE = "https://generativelanguage.googleapis.com/v1beta";
 const GEMINI_MODEL = "gemini-2.5-flash";
+const MAX_MESSAGE_LENGTH = 2000;
+const MAX_HISTORY_ITEMS = 20;
+const API_TIMEOUT_MS = 15000;
+
+// Rate limiting in-memory simple (par IP, fenêtre glissante 1 minute)
+const rateLimitMap = new Map();
+const RATE_LIMIT_MAX = 15;
+const RATE_LIMIT_WINDOW_MS = 60_000;
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip) || { count: 0, windowStart: now };
+  if (now - entry.windowStart > RATE_LIMIT_WINDOW_MS) {
+    rateLimitMap.set(ip, { count: 1, windowStart: now });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT_MAX) return false;
+  rateLimitMap.set(ip, { count: entry.count + 1, windowStart: entry.windowStart });
+  return true;
+}
 
 export async function POST(request) {
   try {
-    const { message, conversationHistory = [] } = await request.json();
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: "Trop de requêtes. Merci de patienter une minute." },
+        { status: 429 }
+      );
+    }
 
-    if (!message || message.trim().length === 0) {
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json({ error: "Corps de requête invalide." }, { status: 400 });
+    }
+
+    const { message, conversationHistory = [] } = body;
+
+    if (!message || typeof message !== "string" || message.trim().length === 0) {
       return NextResponse.json(
         { error: "Le message ne peut pas être vide" },
         { status: 400 }
       );
     }
 
+    if (message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        { error: `Message trop long (max ${MAX_MESSAGE_LENGTH} caractères).` },
+        { status: 413 }
+      );
+    }
+
+    if (!Array.isArray(conversationHistory)) {
+      return NextResponse.json({ error: "Historique invalide." }, { status: 400 });
+    }
+
     const apiKey = process.env.GOOGLE_GEMINI_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
-        { error: "Clé API Google Gemini non configurée (GOOGLE_GEMINI_API_KEY dans .env.local)" },
+        { error: "Clé API Google Gemini non configurée." },
         { status: 500 }
       );
     }
@@ -31,7 +77,7 @@ IMPORTANT :
 
     // Historique au format Gemini : role "user" ou "model", parts: [{ text }]
     const contents = [];
-    for (const m of conversationHistory.slice(-10)) {
+    for (const m of conversationHistory.slice(-MAX_HISTORY_ITEMS)) {
       const role = m.role === "user" ? "user" : "model";
       const text = typeof m.content === "string" ? m.content : "";
       if (!text.trim()) continue;
@@ -50,14 +96,27 @@ IMPORTANT :
     };
 
     const url = `${GEMINI_API_BASE}/models/${GEMINI_MODEL}:generateContent`;
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": apiKey,
-      },
-      body: JSON.stringify(body),
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
+    let response;
+    try {
+      response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": apiKey,
+        },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      });
+    } catch (fetchError) {
+      clearTimeout(timeoutId);
+      if (fetchError.name === "AbortError") {
+        return NextResponse.json({ error: "La requête a expiré. Veuillez réessayer." }, { status: 504 });
+      }
+      throw fetchError;
+    }
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       let errorData;
@@ -75,7 +134,7 @@ IMPORTANT :
             response.status === 401 || response.status === 403
               ? "Clé API Google Gemini invalide ou expirée."
               : errMsg,
-          details: errorData,
+          ...(process.env.NODE_ENV === "development" && { details: errorData }),
         },
         { status: response.status >= 400 ? response.status : 500 }
       );
@@ -160,7 +219,7 @@ N'hésite pas à me joindre par téléphone ou email !`;
     return NextResponse.json(
       {
         error: "Une erreur est survenue lors du traitement de votre demande",
-        details: error?.message ?? "Erreur inconnue",
+        ...(process.env.NODE_ENV === "development" && { details: error?.message ?? "Erreur inconnue" }),
       },
       { status: 500 }
     );

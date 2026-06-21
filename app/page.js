@@ -213,7 +213,7 @@ export default function HomePage() {
                   Expert & Tech Lead IA — Stratégie, architecture et déploiement
                 </h3>
                 <div className="homepage-exp-company" style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  NaTran (ex-GRTgaz) · Mission mc2i
+                  Tech Lead Data & IA
                 </div>
                 <p className="homepage-exp-description" style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
                   Programme de transformation des processus métiers d'un acteur majeur des infrastructures énergétiques, avec intégration de l'IA dans les chaînes de décision, d'exploitation et de performance opérationnelle.
@@ -224,12 +224,15 @@ export default function HomePage() {
                   <li>Définition de la stratégie IA et élaboration de feuilles de route pluriannuelles</li>
                   <li>Priorisation des cas d'usage à fort impact opérationnel et industriel</li>
                   <li>Mise en place de standards technologiques et gouvernance IA (risques, conformité, sécurité)</li>
+                  <li>Développement d'agents et d'assistants IA sur Microsoft Copilot Studio</li>
+                  <li>Intégration et exploitation de données via Snowflake</li>
                 </ul>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   <span className="badge">Tech Lead IA</span>
                   <span className="badge">Stratégie IA</span>
                   <span className="badge">Gouvernance IA</span>
-                  <span className="badge">Énergie</span>
+                  <span className="badge">Copilot Studio</span>
+                  <span className="badge">Snowflake</span>
                 </div>
               </div>
 
@@ -253,7 +256,7 @@ export default function HomePage() {
                   Tech Lead IA générative — Programme R&D et innovation
                 </h3>
                 <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  TotalEnergies · Mission mc2i
+                  Tech Lead Data & IA
                 </div>
                 <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
                   Accélération de la recherche scientifique par l'intégration de l'IA générative dans les processus d'idéation, d'analyse et d'exploration technologique des équipes R&D.
@@ -293,7 +296,7 @@ export default function HomePage() {
                   Manager & Tech Lead Data & IA — Transformation et industrialisation
                 </h3>
                 <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  mc2i
+                  Tech Lead Data & IA
                 </div>
                 <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
                   Conseil auprès de grands groupes dans leurs programmes de transformation Data & IA visant l'industrialisation des usages, l'alignement stratégique métiers/IT et le passage à l'échelle des solutions d'intelligence artificielle.
@@ -333,10 +336,10 @@ export default function HomePage() {
                   Chef de projet MOE Data & BI — Pilotage de la performance contractuelle
                 </h3>
                 <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  RATP · Mission mc2i
+                  Tech Lead Data & IA
                 </div>
                 <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
-                  Pilotage des dispositifs Data soutenant le suivi de la performance financière et opérationnelle du contrat RATP–IDFM, dans un environnement multi-SI complexe.
+                  Pilotage des dispositifs Data soutenant le suivi de la performance financière et opérationnelle d'un contrat de transport public majeur, dans un environnement multi-SI complexe.
                 </p>
                 <div style={{ fontSize: 12, fontWeight: 600, color: "var(--accent)", marginBottom: 8 }}>Réalisations :</div>
                 <ul style={{ fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)", margin: "0 0 16px 20px", paddingLeft: 8 }}>
@@ -373,7 +376,7 @@ export default function HomePage() {
                   Product Owner digital — Plateforme nationale JO Paris 2024
                 </h3>
                 <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  COJOP Paris 2024 · Mission mc2i
+                  Tech Lead Data & IA
                 </div>
                 <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
                   Conception et pilotage d'une plateforme digitale nationale à forte exposition publique, au service de l'expérience utilisateur et du rayonnement des Jeux Olympiques.
@@ -413,7 +416,7 @@ export default function HomePage() {
                   IT Project Manager — Solutions décisionnelles Groupe
                 </h3>
                 <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  LVMH
+                  Tech Lead Data & IA
                 </div>
                 <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
                   Pilotage de solutions décisionnelles stratégiques au sein de la DSI Groupe pour soutenir les directions RH et Juridique dans leurs enjeux de pilotage et de conformité.
@@ -453,7 +456,7 @@ export default function HomePage() {
                   Master Data & AI Manager — Data engineering industriel
                 </h3>
                 <div style={{ fontSize: 14, color: "var(--accent)", fontFamily: "monospace", marginBottom: 12 }}>
-                  Safran Aircraft Engines
+                  Tech Lead Data & IA
                 </div>
                 <p style={{ fontSize: 15, lineHeight: 1.8, color: "var(--fg-muted)", marginBottom: 12 }}>
                   Structuration des fondations Data industrielles pour permettre les futurs usages IA et la maintenance prédictive sur des systèmes critiques aéronautiques.

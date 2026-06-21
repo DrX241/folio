@@ -1,8 +1,7 @@
 import "./globals.css";
 import Script from "next/script";
 import Link from "next/link";
-import Chatbot from "@/components/Chatbot";
-import ScrollProgress from "@/components/ScrollProgress";
+import ClientWidgets from "@/components/ClientWidgets";
 export const metadata = {
   title: "Eddy MISSONI – Tech Lead | Data & IA",
   description: "Tech Lead — Data & IA. Je conçois et pilote des solutions IA (RAG, LLM), Data/BI et plateformes immersives.",
@@ -47,7 +46,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body>
-        <ScrollProgress />
+        <ClientWidgets />
         {plausibleDomain && (
           <Script
             defer
@@ -67,7 +66,6 @@ export default function RootLayout({ children }) {
           </div>
         </div>
         <main style={{ width: "100%", maxWidth: "100%", margin: 0, padding: 0 }}>{children}</main>
-        <Chatbot />
         <footer className="footer">
           <div className="container">© {new Date().getFullYear()} Eddy MISSONI — Tech Lead.</div>
         </footer>

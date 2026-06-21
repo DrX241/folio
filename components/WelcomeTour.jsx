@@ -36,7 +36,7 @@ const TOUR_STEPS = [
     icon: "◉",
     title: "Fil d'expériences",
     description:
-      "À droite, un fil chronologique de mes expériences clés. Scrollez pour les parcourir : NaTran, TotalEnergies, mc2i, RATP, LVMH, Safran…",
+      "À droite, un fil chronologique de mes expériences clés. Scrollez pour les parcourir : Tech Lead Data & IA dans l'énergie, le transport, le luxe, l'industrie…",
   },
   {
     selector: "#realisations",

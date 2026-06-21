@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const TITLES = ["Expert IA", "Chef de projet & Tech Lead", "Data & IA"];
+const TITLES = ["Tech Lead", "Data & IA"];
 const DESCRIPTIONS = [
   "Curieux et force de proposition",
   "Orienté impact client",
@@ -69,8 +69,6 @@ export default function TypewriterTitle() {
         {TITLES[0]}
         <br />
         <span style={{ color: "var(--accent)" }}>{TITLES[1]}</span>
-        <br />
-        {TITLES[2]}
       </h1>
       <div style={{
         fontSize: 20,

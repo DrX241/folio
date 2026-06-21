@@ -7,11 +7,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   reactStrictMode: true,
   outputFileTracingRoot: __dirname,
-  
+
   // Optimisations performance
   compress: true,
   poweredByHeader: false,
-  
+
+  experimental: {
+    optimizePackageImports: ["three", "@react-three/fiber", "@react-three/drei", "chart.js"],
+  },
+
   // Images optimisées
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -45,6 +49,14 @@ const nextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin'
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+          },
+          {
+            key: 'X-Permitted-Cross-Domain-Policies',
+            value: 'none'
           }
         ]
       }
