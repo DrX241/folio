@@ -85,7 +85,7 @@ IMPORTANT :
     }
     contents.push({ role: "user", parts: [{ text: message.trim() }] });
 
-    const body = {
+    const geminiPayload = {
       systemInstruction: { parts: [{ text: systemMessage }] },
       contents,
       generationConfig: {
@@ -106,7 +106,7 @@ IMPORTANT :
           "Content-Type": "application/json",
           "x-goog-api-key": apiKey,
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(geminiPayload),
         signal: controller.signal,
       });
     } catch (fetchError) {
