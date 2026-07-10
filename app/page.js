@@ -147,9 +147,6 @@ export default function HomePage() {
               </ul>
             </div>
             <div className="actions homepage-actions" style={{ flexDirection: "column", gap: 12, alignItems: "flex-start" }}>
-              <Link className="btn primary" href="/about" style={{ fontSize: 16, padding: "16px 32px", width: "100%", textAlign: "center" }}>
-                [ En savoir plus ]
-              </Link>
               <Link className="btn" href="/lab" style={{ fontSize: 16, padding: "16px 32px", width: "100%", textAlign: "center", border: "2px solid var(--accent)", background: "transparent", color: "var(--accent)" }}>
                 [ Accès au LAB ]
               </Link>

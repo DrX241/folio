@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
               EMI — Tech Lead
             </Link>
             <nav className="navlinks" aria-label="Navigation principale">
-              <Link href="/about" id="nav-about">À propos</Link>
+              <Link href="/lab">LAB</Link>
             </nav>
           </div>
         </div>
