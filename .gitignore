@@ -7,6 +7,9 @@
 
 # testing
 /coverage
+/.design-backups/
+/.design-tools/
+/.design-review/
 
 # next.js
 /.next/
@@ -32,8 +35,8 @@ dev_*.log
 lint_*.log
 
 # local env files
-.env*.local
-.env
+/.content/
+.env*
 # Mais garder .env.example pour la documentation
 !.env.example
 

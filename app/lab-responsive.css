@@ -1,0 +1,10 @@
+@media (max-width:900px) {
+  .u-project-grid.is-four { grid-template-columns:1fr; }
+  .u-project-grid.is-four .u-project-card:nth-child(4) { padding-top:0; }
+  .u-project-grid.is-four .u-project-art { height:310px; }
+}
+.lab-controls-grid small { color:#555b53; }
+.lab-probabilities .is-cut { opacity:1; color:#5d625a; }
+.lab-probabilities .is-cut > i { opacity:.45; }
+.lab-docs li { opacity:1; }
+.lab-docs li:not(.is-selected) { color:#555b53; }

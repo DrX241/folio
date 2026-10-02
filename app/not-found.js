@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function NotFound() { return <section className="u-wrap u-error"><span className="u-label">404 / HORS DES SENTIERS</span><h1>Cette piste<br /><em>s’arrête ici.</em></h1><p>La page demandée n’existe pas ou a changé d’adresse.</p><div className="u-action-row"><Link className="u-button" href="/">Revenir à l’accueil ↗</Link><Link className="u-link" href="/recherche">Chercher une autre piste ↗</Link></div></section>; }

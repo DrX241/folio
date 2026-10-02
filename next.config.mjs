@@ -12,10 +12,6 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
 
-  experimental: {
-    optimizePackageImports: ["three", "@react-three/fiber", "@react-three/drei", "chart.js"],
-  },
-
   // Images optimisées
   images: {
     formats: ['image/avif', 'image/webp'],

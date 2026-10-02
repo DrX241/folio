@@ -1,76 +1,36 @@
 import "./globals.css";
-import Script from "next/script";
-import Link from "next/link";
-import ClientWidgets from "@/components/ClientWidgets";
-export const metadata = {
-  title: "Eddy MISSONI – Tech Lead | Data & IA",
-  description: "Tech Lead — Data & IA. Je conçois et pilote des solutions IA (RAG, LLM), Data/BI et plateformes immersives.",
-  keywords: ["Tech Lead", "Data", "IA", "RAG", "LLM", "Chef de projet", "Next.js", "React"],
-  authors: [{ name: "Eddy MISSONI" }],
-  openGraph: {
-    title: "Eddy MISSONI – Tech Lead | Data & IA",
-    description: "Tech Lead — Data & IA. Solutions IA, Data/BI et plateformes immersives.",
-    type: "website",
-    locale: "fr_FR",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Eddy MISSONI – Tech Lead | Data & IA",
-    description: "Tech Lead — Data & IA. Solutions IA, Data/BI et plateformes immersives.",
-  },
-  robots: { 
-    index: true, 
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    }
-  },
-};
+import "./universe.css";
+import "./lab.css";
+import "./lab-responsive.css";
+import "./lab-learning.css";
+import "./admin.css";
+import "./cms.css";
+import { publicContent } from "@/lib/cms-store.mjs";
+import { themeCss } from "@/lib/cms-schema.mjs";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
+import { site } from "@/lib/site";
 
-export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-  userScalable: true,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0a0e27' }
-  ]
+export const metadata = {
+  metadataBase: new URL(site.url),
+  title: { default: "Eddy Missoni — Penser, construire, transmettre", template: "%s — Eddy Missoni" },
+  description: site.description,
+  authors: [{ name: site.name }],
+  openGraph: { title: "Eddy Missoni — Penser, construire, transmettre", description: site.description, type: "website", locale: "fr_FR", siteName: site.name },
+  twitter: { card: "summary_large_image" },
+  alternates: { types: { "application/rss+xml": "/feed.xml" } },
 };
-export default function RootLayout({ children }) {
-  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
-  return (
-    <html lang="fr">
-      <body>
-        <ClientWidgets />
-        {plausibleDomain && (
-          <Script
-            defer
-            data-domain={plausibleDomain}
-            src="https://plausible.io/js/script.js"
-            strategy="afterInteractive"
-          />
-        )}
-        <div className="navbar">
-          <div className="container navbar-inner">
-            <Link className="brand" href="/" aria-label="Accueil">
-              EMI — Tech Lead
-            </Link>
-            <nav className="navlinks" aria-label="Navigation principale">
-              <Link href="/lab">LAB</Link>
-            </nav>
-          </div>
-        </div>
-        <main style={{ width: "100%", maxWidth: "100%", margin: 0, padding: 0 }}>{children}</main>
-        <footer className="footer">
-          <div className="container">© {new Date().getFullYear()} Eddy MISSONI — Tech Lead.</div>
-        </footer>
-      </body>
-    </html>
-  );
+export const viewport = { width: "device-width", initialScale: 1, themeColor: "#f3f0e8" };
+export default async function RootLayout({ children }) {
+  const settings = (await publicContent()).cms.settings;
+  const schema = { "@context": "https://schema.org", "@type": "Person", name: site.name, url: site.url, jobTitle: "Tech Lead Data & IA", sameAs: [site.linkedin] };
+  return <html lang="fr"><body>
+    <style>{themeCss(settings)}</style>
+    <a className="u-skip" href="#main-content">Aller au contenu</a>
+    <SiteHeader settings={settings} />
+    <main id="main-content" tabIndex={-1}>{children}</main>
+    <SiteFooter settings={settings} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
+  </body></html>;
 }
 

@@ -29,16 +29,6 @@ const TOUR_STEPS = [
       "À gauche, mon profil reste affiché pendant tout votre scroll : qui je suis, ce que j'apporte, et les liens vers mon profil complet.",
   },
   {
-    selector: "#experiences",
-    scrollTo: "#experiences",
-    maxHeight: 420,
-    tag: "EXPÉRIENCES",
-    icon: "◉",
-    title: "Fil d'expériences",
-    description:
-      "À droite, un fil chronologique de mes expériences clés. Scrollez pour les parcourir : Tech Lead Data & IA dans l'énergie, le transport, le luxe, l'industrie…",
-  },
-  {
     selector: "#realisations",
     scrollTo: "#realisations",
     maxHeight: 380,
@@ -46,7 +36,7 @@ const TOUR_STEPS = [
     icon: "⬡",
     title: "Démonstrateurs IA interactifs",
     description:
-      "La section LAB regroupe des outils IA testables en live : Text-to-SQL, RAG multi-provider, générateur de données, anonymiseur… Utilisables avec vos propres clés API.",
+      "La section LAB regroupe des démonstrateurs testables en direct : détection d'anomalies, anonymisation et expérience immersive.",
   },
   {
     selector: "#competences",
@@ -66,15 +56,6 @@ const TOUR_STEPS = [
     title: "Ma vision & méthode",
     description:
       "La page À propos détaille mon approche, ma méthode de travail et mon positionnement en tant que Tech Lead & Chef de projet IA.",
-  },
-  {
-    selector: ".chatbot-button",
-    scrollTo: "bottom",
-    tag: "CHATBOT",
-    icon: "✦",
-    title: "Posez vos questions",
-    description:
-      "Le chatbot en bas à droite est disponible à tout moment pour répondre à vos questions sur mon profil, mes expériences ou mes projets.",
   },
 ];
 
@@ -162,8 +143,6 @@ export default function WelcomeTour() {
 
     if (s.scrollTo === "top") {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } else if (s.scrollTo === "bottom") {
-      // chatbot est fixed, pas besoin de scroll
     } else if (s.scrollTo && s.scrollTo !== "top") {
       const anchor = document.querySelector(s.scrollTo);
       if (anchor) {

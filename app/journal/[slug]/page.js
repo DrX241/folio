@@ -1,0 +1,11 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { publishedArticles, readingMinutes } from "@/lib/journal";
+import { pageMetadata, site } from "@/lib/site";
+export const dynamic = "force-dynamic";
+export async function generateMetadata({ params }) { const { slug } = await params; const article=(await publishedArticles()).find(item => item.slug===slug); if (!article) return {}; const meta=pageMetadata(article.title,article.summary,"/journal/"+slug); return { ...meta, openGraph: { ...meta.openGraph, type:"article", publishedTime:article.date, authors:[site.name] } }; }
+export default async function ArticlePage({ params }) {
+  const { slug } = await params; const article=(await publishedArticles()).find(item => item.slug===slug); if (!article) notFound();
+  const schema={ "@context":"https://schema.org", "@type":"Article", headline:article.title, description:article.summary, datePublished:article.date, author:{ "@type":"Person",name:site.name,url:site.url+"/a-propos" },mainEntityOfPage:site.url+"/journal/"+slug };
+  return <><header className="u-page-intro u-wrap"><nav className="u-breadcrumb" aria-label="Fil d’Ariane"><Link href="/">Accueil</Link><span>/</span><Link href="/journal">Journal</Link></nav><p className="u-label">{article.category}</p><h1>{article.title}</h1><p className="u-page-description">{article.summary}</p><div className="u-article-meta">Eddy Missoni · <time dateTime={article.date}>{new Intl.DateTimeFormat("fr-FR",{ dateStyle:"long",timeZone:"UTC" }).format(new Date(article.date))}</time> · {readingMinutes(article)} min de lecture</div></header><div className="u-wrap u-article-layout"><nav className="u-toc" aria-label="Sommaire"><p className="u-label">DANS CET ARTICLE</p>{article.sections.map(section => <a key={section.id} href={"#"+section.id}>{section.heading}</a>)}</nav><article className="u-prose">{article.sections.map(section => <section key={section.id} id={section.id}><h2>{section.heading}</h2>{section.paragraphs.map((paragraph,index) => <p key={index}>{paragraph}</p>)}</section>)}<div className="u-action-row"><Link href="/journal">Retour au journal</Link><Link href="/contact">Poursuivre la discussion</Link></div></article></div><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g,"\\u003c") }} /></>;
+}
