@@ -11,6 +11,9 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { site } from "@/lib/site";
 
+// Global navigation and appearance come from the live CMS, including on 404 pages.
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   metadataBase: new URL(site.url),
   title: { default: "Eddy Missoni — Penser, construire, transmettre", template: "%s — Eddy Missoni" },

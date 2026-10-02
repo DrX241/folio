@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cms:check": "node scripts/cms-supabase.mjs check",
+    "cms:migrate": "node scripts/cms-supabase.mjs migrate",
+    "test:cms-storage": "node --test tests/cms-supabase.test.mjs"
   },
   "dependencies": {
     "next": "^15.5.7",

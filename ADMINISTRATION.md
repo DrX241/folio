@@ -26,6 +26,6 @@ Les données actives sont dans `.content/content.json`, indépendant de `.next` 
 
 Le CMS valide les éléments, les liens et les styles. Il n’accepte pas de scripts, de HTML libre ni de CSS exécutable. Les images importées sont limitées à 8 Mo, aux signatures PNG/JPEG/WebP/GIF ; les SVG importés sont refusés. Les requêtes d’écriture vérifient la session et l’origine.
 
-Cette implémentation est prévue pour un seul serveur Node local avec disque persistant. Avant déploiement sur Vercel ou plusieurs instances, remplacer le JSON et les fichiers locaux par un stockage durable avec transactions et sauvegardes. Ne pas supposer que le disque temporaire des fonctions conservera les contenus.
+Le stockage local reste disponible pour un serveur Node avec disque persistant. Le mode `CMS_STORAGE=supabase` utilise désormais une base durable, des écritures atomiques avec révision et un bucket privé. Voir [SUPABASE.md](SUPABASE.md) pour créer le schéma, importer les données sans écrasement et configurer Vercel. Ne pas supposer que le disque temporaire des fonctions conservera les contenus.
 
 Travail local uniquement. Aucun commit ni déploiement sans accord explicite.

@@ -6,6 +6,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Isolate a local production build from an IDE's concurrent dev server.
+  distDir: process.env.NEXT_BUILD_DIR || '.next',
   outputFileTracingRoot: __dirname,
 
   // Optimisations performance
