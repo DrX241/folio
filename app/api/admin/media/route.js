@@ -8,7 +8,7 @@ export async function POST(request) {
     const token = request.cookies.get('eddy_admin')?.value;
     if (!(await sessionAccount(token))) throw new CmsError('Connectez-vous pour ajouter une image.', 401);
     const file = (await request.formData()).get('file');
-    if (!file || typeof file.arrayBuffer !== 'function' || file.size > 8 * 1024 * 1024) throw new CmsError('Choisissez une image de moins de 8 Mo.');
+    if (!file || typeof file.arrayBuffer !== 'function' || file.size > 4 * 1024 * 1024) throw new CmsError('Choisissez une image de moins de 4 Mo.');
     const buffer = Buffer.from(await file.arrayBuffer());
     let extension;
     if (buffer.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]))) extension = 'png';

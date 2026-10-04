@@ -9,6 +9,8 @@ const nextConfig = {
   // Isolate a local production build from an IDE's concurrent dev server.
   distDir: process.env.NEXT_BUILD_DIR || '.next',
   outputFileTracingRoot: __dirname,
+  // Compile editorial documents at runtime with Tailwind's native Node resolver.
+  serverExternalPackages: ['tailwindcss', 'postcss', 'parse5'],
 
   // Optimisations performance
   compress: true,
@@ -63,4 +65,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-

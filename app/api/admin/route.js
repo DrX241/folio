@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
-import { CmsError, createAccount, login, logout, adminContent, saveArticle, savePage, saveCms } from '@/lib/cms-store.mjs';
+import { sessionAccount } from '@/lib/cms-store.mjs';
+import { compileJournalDocument } from '@/lib/journal-html.mjs';
+import { CmsError, createAccount, login, logout, adminContent, saveArticle, deleteArticle, restoreArticle, emptyTrash, savePage, saveCms } from '@/lib/cms-store.mjs';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -30,8 +32,15 @@ export async function POST(request) {
     else if (body.action === 'login') newToken = await login(body);
     else if (body.action === 'logout') await logout(token);
     else if (body.action === 'article') result = await saveArticle(token, body.article);
+    else if (body.action === 'delete-article') result = await deleteArticle(token, body);
+    else if (body.action === 'restore-article') result = await restoreArticle(token, body);
+    else if (body.action === 'empty-trash') result = await emptyTrash(token, body);
     else if (body.action === 'page') result = await savePage(token, body);
     else if (body.action === 'cms') result = await saveCms(token, body);
+    else if (body.action === 'preview-document') {
+      if(!(await sessionAccount(token)))throw new CmsError('Connectez-vous pour compiler un document.',401);
+      try{result=await compileJournalDocument(body.document);}catch(error){throw new CmsError(error.message);}
+    }
     else throw new CmsError('Action inconnue.');
     const response = NextResponse.json(result, { headers: noCache });
     if (newToken || body.action === 'logout') response.cookies.set(cookieName, newToken || '', { httpOnly: true, sameSite: 'strict', secure: request.nextUrl.protocol === 'https:', path: '/', maxAge: newToken ? 8 * 60 * 60 : 0 });

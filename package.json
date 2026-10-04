@@ -9,16 +9,32 @@
     "lint": "next lint",
     "cms:check": "node scripts/cms-supabase.mjs check",
     "cms:migrate": "node scripts/cms-supabase.mjs migrate",
-    "test:cms-storage": "node --test tests/cms-supabase.test.mjs"
+    "test:cms-storage": "node --test tests/cms-supabase.test.mjs",
+    "test:journal": "node --test tests/article-blocks.test.mjs tests/journal-document.test.mjs tests/journal-html.test.mjs"
   },
   "dependencies": {
-    "next": "^15.5.7",
-    "react": "^19.0.1",
-    "react-dom": "^19.0.1"
+    "@tiptap/extension-highlight": "^3.31.4",
+    "@tiptap/extension-text-align": "^3.31.4",
+    "@tiptap/pm": "^3.31.4",
+    "@tiptap/react": "^3.31.4",
+    "@tiptap/starter-kit": "^3.31.4",
+    "next": "15.5.27",
+    "parse5": "^8.0.1",
+    "postcss": "^8.5.28",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tailwindcss": "3.4.19"
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "^15.5.7"
+    "eslint-config-next": "15.5.27"
+  },
+  "overrides": {
+    "postcss": "$postcss",
+    "sharp": "0.35.5",
+    "braces": {
+      "picomatch": "2.3.2"
+    }
   },
   "engines": {
     "node": ">=18.0.0"

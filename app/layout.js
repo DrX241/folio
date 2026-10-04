@@ -5,6 +5,8 @@ import "./lab-responsive.css";
 import "./lab-learning.css";
 import "./admin.css";
 import "./cms.css";
+import "./journal-editor.css";
+import "./journal-studio.css";
 import { publicContent } from "@/lib/cms-store.mjs";
 import { themeCss } from "@/lib/cms-schema.mjs";
 import SiteHeader from "@/components/SiteHeader";
